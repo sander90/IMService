@@ -1,0 +1,273 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C5302ACF1C96AEF20060C66B /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C55B44381C94D99F0036F712 /* IMService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5302AE41C96B25A0060C66B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302AE31C96B25A0060C66B /* Foundation.framework */; };
+		C55B44391C94D99F0036F712 /* IMService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C55B44381C94D99F0036F712 /* IMService.h */; };
+		C55B443B1C94D99F0036F712 /* IMService.m in Sources */ = {isa = PBXBuildFile; fileRef = C55B443A1C94D99F0036F712 /* IMService.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C55B44331C94D99F0036F712 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				C55B44391C94D99F0036F712 /* IMService.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C5302AE31C96B25A0060C66B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C55B44351C94D99F0036F712 /* libIMService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIMService.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C55B44381C94D99F0036F712 /* IMService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMService.h; sourceTree = "<group>"; };
+		C55B443A1C94D99F0036F712 /* IMService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMService.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C55B44321C94D99F0036F712 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5302AE41C96B25A0060C66B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C55B442C1C94D99F0036F712 = {
+			isa = PBXGroup;
+			children = (
+				C5302AE31C96B25A0060C66B /* Foundation.framework */,
+				C55B44371C94D99F0036F712 /* IMService */,
+				C55B44361C94D99F0036F712 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C55B44361C94D99F0036F712 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C55B44351C94D99F0036F712 /* libIMService.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C55B44371C94D99F0036F712 /* IMService */ = {
+			isa = PBXGroup;
+			children = (
+				C55B44381C94D99F0036F712 /* IMService.h */,
+				C55B443A1C94D99F0036F712 /* IMService.m */,
+			);
+			path = IMService;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C5302ACE1C96AEED0060C66B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5302ACF1C96AEF20060C66B /* IMService.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C55B44341C94D99F0036F712 /* IMService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C55B443E1C94D99F0036F712 /* Build configuration list for PBXNativeTarget "IMService" */;
+			buildPhases = (
+				C55B44311C94D99F0036F712 /* Sources */,
+				C55B44321C94D99F0036F712 /* Frameworks */,
+				C55B44331C94D99F0036F712 /* CopyFiles */,
+				C5302ACE1C96AEED0060C66B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IMService;
+			productName = IMService;
+			productReference = C55B44351C94D99F0036F712 /* libIMService.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C55B442D1C94D99F0036F712 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = shansander;
+				TargetAttributes = {
+					C55B44341C94D99F0036F712 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = C55B44301C94D99F0036F712 /* Build configuration list for PBXProject "IMService" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C55B442C1C94D99F0036F712;
+			productRefGroup = C55B44361C94D99F0036F712 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C55B44341C94D99F0036F712 /* IMService */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C55B44311C94D99F0036F712 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C55B443B1C94D99F0036F712 /* IMService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C55B443C1C94D99F0036F712 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C55B443D1C94D99F0036F712 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C55B443F1C94D99F0036F712 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		C55B44401C94D99F0036F712 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C55B44301C94D99F0036F712 /* Build configuration list for PBXProject "IMService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C55B443C1C94D99F0036F712 /* Debug */,
+				C55B443D1C94D99F0036F712 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C55B443E1C94D99F0036F712 /* Build configuration list for PBXNativeTarget "IMService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C55B443F1C94D99F0036F712 /* Debug */,
+				C55B44401C94D99F0036F712 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C55B442D1C94D99F0036F712 /* Project object */;
+}
