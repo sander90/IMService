@@ -20,4 +20,10 @@
 
 }
 
++(void)printLog:(NSString *)content WithTag:(NSString * )tag
+{
+    printf("[%s]  ",tag.UTF8String);
+    printf("%s\n",content.UTF8String);
+}
+
 @end

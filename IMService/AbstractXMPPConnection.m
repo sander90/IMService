@@ -37,27 +37,35 @@
         _username = userName;
         _userpassword = password;
         _hostName = serviceName;
-        XMPPJID * myjid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",userName,serviceName]];
-        [im.xmppStream setMyJID:myjid];
-
-        NSError * error;
-        
+       
+       
         if ([im.xmppStream isConnected]) {
             [SDPrintLog printLog:@"已经连接了，我要断掉"];
             [im.xmppStream disconnect];
         }
+       
         
-        BOOL reslut = [im.xmppStream connect:&error];
-        if (reslut) {
-            [SDPrintLog printLog:@"连接服务器成功"];
-        }else{
-            [SDPrintLog printLog:[NSString stringWithFormat:@"连接服务器失败 %@",error]];
-        }
-        //不知道为什么，这里会出现错误，错误的缘由还不清楚是什么
+               //不知道为什么，这里会出现错误，错误的缘由还不清楚是什么
 //        [im.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 
     }
     return self;
+}
+
+- (void)connect{
+    IMService * im = [IMService initIMService];
+
+    XMPPJID * myjid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",self.username,self.hostName]];
+    [im.xmppStream setMyJID:myjid];
+    NSError * error;
+    BOOL reslut = [im.xmppStream connect:&error];
+    if (reslut) {
+        [SDPrintLog printLog:@"连接服务器成功"];
+    }else{
+        [SDPrintLog printLog:[NSString stringWithFormat:@"连接服务器失败 %@",error]];
+    }
+
+ 
 }
 
 
@@ -65,9 +73,7 @@
 - (void)goOnline
 {
     IMService * im = [IMService initIMService];
-    
-    XMPPPresence *presence = [XMPPPresence presence]; // type="available" is implicit
-    
+    XMPPPresence *presence = [XMPPPresence elementWithName:@"presence"];
     [im.xmppStream sendElement:presence];
 }
 

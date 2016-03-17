@@ -1,5 +1,5 @@
 //
-//  SDPrintLog.h
+//  Chat.h
 //  IMService
 //
 //  Created by shansander on 16/3/17.
@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SDPrintLog : NSObject
-+ (void)printLog:(NSString * )content;
+#import "IMService.h"
 
-+(void)printLog:(NSString *)content WithTag:(NSString * )tag;
+@interface Chat : NSObject
+
+
+@property(nonatomic,strong,readonly) XMPPJID * FriendJID;
 
 @end

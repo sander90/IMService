@@ -14,13 +14,20 @@
 
 @protocol IMServiceDelegate <NSObject>
 
+// xmpp 连接成功返回
 - (void)IMServiceDidConnect;
+// xmpp 认证成功后返回
 - (void)IMServiceDidAuthenticate;
+// xmpp 回收消息
+- (void)IMServicedidReceiveMessage:(NSString * )messageContent from:(NSString * )fromName;
 
 @end
 
 
 @interface IMService : NSObject
+{
+   
+}
 
 @property (nonatomic, strong) id<IMServiceDelegate>delegate;
 
@@ -33,9 +40,6 @@
 @property (nonatomic, readonly) XMPPvCardAvatarModule *xmppvCardAvatarModule;
 @property (nonatomic, readonly) XMPPCapabilities *xmppCapabilities;
 @property (nonatomic, readonly) XMPPCapabilitiesCoreDataStorage *xmppCapabilitiesStorage;
-
-
-+ (void)printdescription;
 
 
 + (IMService *)initIMService;

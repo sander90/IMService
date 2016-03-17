@@ -20,7 +20,20 @@
 
 #import <CFNetwork/CFNetwork.h>
 
+#import "SDPrintLog.h"
+
 @interface IMService ()
+{
+    
+}
+
+@property (nonatomic)NSManagedObjectContext *managedObjectContext_roster;
+@property (nonatomic)XMPPCapabilities *xmppCapabilities;
+@property (nonatomic)XMPPCapabilitiesCoreDataStorage *xmppCapabilitiesStorage;
+@property (nonatomic)    XMPPvCardCoreDataStorage *xmppvCardStorage;
+@property (nonatomic) XMPPvCardTempModule *xmppvCardTempModule;
+@property (nonatomic)NSManagedObjectContext *managedObjectContext_capabilities;
+
 
 
 @end
@@ -28,12 +41,6 @@
 
 @implementation IMService
 
-+ (void)printdescription
-{
-    printf("#######\n");
-    printf("##测试##\n");
-    printf("#######\n");
-}
 
 + (IMService *)initIMService
 {
@@ -53,6 +60,7 @@
     return self;
 }
 
+#pragma mark - 初始化
 - (void)setupStream
 {
     _xmppStream = [[XMPPStream alloc] init];
@@ -65,10 +73,30 @@
     self.xmppRoster.autoFetchRoster = YES;
     self.xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = YES;
     
-//    [self.xmppReconnect activate:self.xmppStream];
+    
+//    _xmppvCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
+//    _xmppvCardTempModule = [[XMPPvCardTempModule alloc] initWithvCardStorage:self.xmppvCardStorage];
+//    
+//    _xmppvCardAvatarModule = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:self.xmppvCardTempModule];
+//    
+//    _xmppCapabilitiesStorage = [XMPPCapabilitiesCoreDataStorage sharedInstance];
+//    _xmppCapabilities = [[XMPPCapabilities alloc] initWithCapabilitiesStorage:self.xmppCapabilitiesStorage];
+//    _xmppCapabilities.autoFetchHashedCapabilities = YES;
+//    _xmppCapabilities.autoFetchNonHashedCapabilities = NO;
+//    
+//    // Activate xmpp modules
+//    
+//    [_xmppReconnect         activate:self.xmppStream];
+//    [_xmppRoster            activate:self.xmppStream];
+//    [_xmppvCardTempModule   activate:self.xmppStream];
+//    [_xmppvCardAvatarModule activate:self.xmppStream];
+//    [_xmppCapabilities      activate:self.xmppStream];
+    
+    // Add ourself as a delegate to anything we may be interested in
+    
+//    [self.xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
-    
 }
 
 - (void)setStreamHoatName:(NSString * )hostname andHostPort:(UInt16)newHostPort
@@ -77,6 +105,64 @@
     self.xmppStream.hostPort = newHostPort;
 }
 
+- (void)sendMessageContent:(NSString * )content
+{
+    XMPPJID * toFriend = [XMPPJID jidWithString:@"sander1@117.158.46.13"];
+    
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:content];
+    
+    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+    [message addAttributeWithName:@"type" stringValue:@"chat"];
+    [message addAttributeWithName:@"to" stringValue:[toFriend full]];
+    [message addChild:body];
+    
+    [_xmppStream sendElement:message];
+}
+
+- (NSManagedObjectContext *)managedObjectContext_roster
+{
+    NSAssert([NSThread isMainThread],
+             @"NSManagedObjectContext is not thread safe. It must always be used on the same thread/queue");
+    
+    if (_managedObjectContext_roster == nil)
+    {
+        _managedObjectContext_roster = [[NSManagedObjectContext alloc] init];
+        
+        NSPersistentStoreCoordinator *psc = [self.xmppRosterStorage persistentStoreCoordinator];
+        [_managedObjectContext_roster setPersistentStoreCoordinator:psc];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(contextDidSave:)
+                                                     name:NSManagedObjectContextDidSaveNotification
+                                                   object:nil];
+    }
+    
+    return _managedObjectContext_roster;
+}
+
+- (void)contextDidSave:(NSNotification *)notification
+{
+    NSManagedObjectContext *sender = (NSManagedObjectContext *)[notification object];
+    
+    if (sender != self.managedObjectContext_roster &&
+        [sender persistentStoreCoordinator] == [self.managedObjectContext_roster persistentStoreCoordinator])
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.managedObjectContext_roster mergeChangesFromContextDidSaveNotification:notification];
+        });
+    }
+    
+    if (sender !=self.managedObjectContext_capabilities &&
+        [sender persistentStoreCoordinator] == [self.managedObjectContext_capabilities persistentStoreCoordinator])
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.managedObjectContext_capabilities mergeChangesFromContextDidSaveNotification:notification];
+        });
+    }
+}
 
 /**
  * This method is called before the stream begins the connection process.
@@ -86,7 +172,7 @@
  **/
 - (void)xmppStreamWillConnect:(XMPPStream *)sender
 {
-    NSLog(@"[xmppStreamWillConnect]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamWillConnect"];
 }
 
 /**
@@ -98,7 +184,7 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket
 {
-    NSLog(@"[socketDidConnect]");
+    [SDPrintLog printLog:@"" WithTag:@"socketDidConnect"];
 }
 
 /**
@@ -107,7 +193,7 @@
  **/
 - (void)xmppStreamDidStartNegotiation:(XMPPStream *)sender
 {
-    NSLog(@"[xmppStreamDidStartNegotiation]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidStartNegotiation"];
 }
 
 /**
@@ -148,8 +234,8 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
 {
-    NSLog(@"[willSecureWithSettings]");
     
+    [SDPrintLog printLog:@"" WithTag:@"willSecureWithSettings"];
     
 }
 
@@ -160,7 +246,7 @@
  **/
 - (void)xmppStreamDidSecure:(XMPPStream *)sender
 {
-    NSLog(@"[xmppStreamDidSecure]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidSecure"];
 }
 
 /**
@@ -171,7 +257,7 @@
  **/
 - (void)xmppStreamDidConnect:(XMPPStream *)sender
 {
-    NSLog(@"[xmppStreamDidConnect]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidConnect"];
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidConnect)]) {
         [self.delegate IMServiceDidConnect];
@@ -185,7 +271,7 @@
  **/
 - (void)xmppStreamDidRegister:(XMPPStream *)sender
 {
-    NSLog(@"[xmppStreamDidRegister]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidRegister"];
 }
 
 /**
@@ -193,7 +279,7 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender didNotRegister:(NSXMLElement *)error
 {
-    NSLog(@"[didNotRegister]");
+    [SDPrintLog printLog:@"" WithTag:@"didNotRegister"];
 }
 
 /**
@@ -202,7 +288,7 @@
  **/
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
-    NSLog(@"[xmppStreamDidAuthenticate]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidAuthenticate"];
     //登录成功
     if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidAuthenticate)]) {
         [self.delegate IMServiceDidAuthenticate];
@@ -214,7 +300,7 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error
 {
-    NSLog(@"[didNotAuthenticate] -> %@",error);
+    [SDPrintLog printLog:@"" WithTag:@"didNotAuthenticate"];
 }
 
 /**
@@ -226,18 +312,47 @@
  **/
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
-    NSLog(@"[didReceiveIQ]");
+    [SDPrintLog printLog:@"" WithTag:@"didReceiveIQ"];
     return YES;
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-    NSLog(@"[didReceiveMessage] -> %@",message);
+    
+    if ([message isChatMessageWithBody])
+    {
+       
+        NSString *body = [[message elementForName:@"body"] stringValue];
+        XMPPJID * fromjid = [message from];
+        NSString * fromeName = fromjid.user;
+        
+        [SDPrintLog printLog:[NSString stringWithFormat:@"%@--->%@",fromeName,body] WithTag:@"didReceiveMessage"];
+        
+        if (self.delegate && [self.delegate respondsToSelector:@selector(IMServicedidReceiveMessage:from:)]) {
+            [self.delegate IMServicedidReceiveMessage:body from:fromeName];
+        }
+        
+        // 不能载这里写。
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+        {
+           
+        }
+        else
+        {
+            // We are not active, so use a local notification instead
+            //用户本地推送
+//            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+//            localNotification.alertAction = @"Ok";
+//            localNotification.alertBody = [NSString stringWithFormat:@"From: %@\n\n%@",displayName,body];
+//            [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+        }
+    }
+
     
     
 }
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
 {
-    NSLog(@"[didReceivePresence]");
+    [SDPrintLog printLog:@"" WithTag:@"didReceivePresence"];
 }
 
 /**
@@ -251,7 +366,7 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender didReceiveError:(NSXMLElement *)error
 {
-    NSLog(@"[didReceiveError]");
+    [SDPrintLog printLog:@"" WithTag:@"didReceiveError"];
 }
 
 /**
@@ -261,17 +376,15 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender willSendIQ:(XMPPIQ *)iq
 {
-    NSLog(@"willSendIQ");
+    [SDPrintLog printLog:@"" WithTag:@"willSendIQ"];
 }
 - (void)xmppStream:(XMPPStream *)sender willSendMessage:(XMPPMessage *)message
 {
-    NSLog(@"[willSendMessage]");
+    [SDPrintLog printLog:@"" WithTag:@"willSendMessage"];
 }
 - (void)xmppStream:(XMPPStream *)sender willSendPresence:(XMPPPresence *)presence
 {
-    NSLog(@"[willSendPresence]");
-    
-    
+    [SDPrintLog printLog:@"" WithTag:@"willSendPresence"];
 }
 
 /**
@@ -281,16 +394,17 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender didSendIQ:(XMPPIQ *)iq
 {
-    NSLog(@"[didSendIQ]");
+    
+    [SDPrintLog printLog:@"" WithTag:@"didSendIQ"];
 }
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
 {
-    NSLog(@"[didSendMessage]");
+    [SDPrintLog printLog:@"" WithTag:@"didSendMessage"];
     
 }
 - (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence
 {
-    NSLog(@"[didSendPresence]");
+    [SDPrintLog printLog:@"" WithTag:@"didSendPresence"];
 }
 
 /**
@@ -299,7 +413,7 @@
  **/
 - (void)xmppStreamWasToldToDisconnect:(XMPPStream *)sender
 {
-    NSLog(@"[xmppStreamWasToldToDisconnect]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamWasToldToDisconnect"];
 }
 
 /**
@@ -313,7 +427,7 @@
  **/
 - (void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
 {
-    NSLog(@"[xmppStreamDidDisconnect]");
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidDisconnect"];
 }
 
 /**
@@ -324,7 +438,7 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender didReceiveP2PFeatures:(NSXMLElement *)streamFeatures
 {
-    NSLog(@"[didReceiveP2PFeatures]");
+    [SDPrintLog printLog:@"" WithTag:@"didReceiveP2PFeatures"];
 }
 
 /**
@@ -335,7 +449,7 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender willSendP2PFeatures:(NSXMLElement *)streamFeatures
 {
-    NSLog(@"[willSendP2PFeatures]");
+    [SDPrintLog printLog:@"" WithTag:@"willSendP2PFeatures"];
 }
 
 /**
@@ -347,10 +461,14 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender didRegisterModule:(id)module
 {
-    NSLog(@"[didRegisterModule]");
+    [SDPrintLog printLog:@"" WithTag:@"didRegisterModule"];
 }
 - (void)xmppStream:(XMPPStream *)sender willUnregisterModule:(id)module
 {
-    NSLog(@"[willUnregisterModule]");
+    [SDPrintLog printLog:@"" WithTag:@"willUnregisterModule"];
+}
+- (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+    [SDPrintLog printLog:@"" WithTag:@"didReceivePresenceSubscriptionRequest"];
 }
 @end

@@ -30,11 +30,25 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+@protocol XmppConnectionDelegate <NSObject>
+
+- (void)XMPPDidConnect;
+
+- (void)XMPPNotConnect;
+
+@end
+
 @interface AbstractXMPPConnection : NSObject
+
+@property (nonatomic, strong) id<XmppConnectionDelegate>delegate;
 
 @property (nonatomic, strong,readonly) NSString * username;
 @property (nonatomic, strong,readonly) NSString * userpassword;
 @property (nonatomic, strong,readonly) NSString * hostName;
 
 - (id)initWithName:(NSString *)userName andPassword:(NSString * )password andServiceName:(NSString *)serviceName;
+
+- (void)connect;
 @end
