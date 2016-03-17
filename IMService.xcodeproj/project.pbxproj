@@ -176,11 +176,13 @@
 		C503F23E1C99692F00421865 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F23D1C99692F00421865 /* UIKit.framework */; };
 		C503F2441C99748B00421865 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2431C99748B00421865 /* libxml2.2.dylib */; };
 		C503F2461C9974AE00421865 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2451C9974AE00421865 /* libresolv.9.dylib */; };
+		C503F24A1C9A4E8D00421865 /* SDPrintLog.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F2481C9A4E8D00421865 /* SDPrintLog.h */; };
+		C503F24B1C9A4E8D00421865 /* SDPrintLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F2491C9A4E8D00421865 /* SDPrintLog.m */; };
 		C5302ACF1C96AEF20060C66B /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C55B44381C94D99F0036F712 /* IMService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5302AE41C96B25A0060C66B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302AE31C96B25A0060C66B /* Foundation.framework */; };
 		C55B44391C94D99F0036F712 /* IMService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C55B44381C94D99F0036F712 /* IMService.h */; };
 		C55B443B1C94D99F0036F712 /* IMService.m in Sources */ = {isa = PBXBuildFile; fileRef = C55B443A1C94D99F0036F712 /* IMService.m */; };
-		C59366E01C96F64700C16770 /* AbstractXMPPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = C59366DE1C96F64700C16770 /* AbstractXMPPConnection.h */; };
+		C59366E01C96F64700C16770 /* AbstractXMPPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = C59366DE1C96F64700C16770 /* AbstractXMPPConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C59366E11C96F64700C16770 /* AbstractXMPPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C59366DF1C96F64700C16770 /* AbstractXMPPConnection.m */; };
 /* End PBXBuildFile section */
 
@@ -369,6 +371,8 @@
 		C503F23D1C99692F00421865 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C503F2431C99748B00421865 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
 		C503F2451C9974AE00421865 /* libresolv.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.9.dylib; path = ../../../../usr/lib/libresolv.9.dylib; sourceTree = "<group>"; };
+		C503F2481C9A4E8D00421865 /* SDPrintLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPrintLog.h; sourceTree = "<group>"; };
+		C503F2491C9A4E8D00421865 /* SDPrintLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPrintLog.m; sourceTree = "<group>"; };
 		C5302AE31C96B25A0060C66B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C55B44351C94D99F0036F712 /* libIMService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIMService.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55B44381C94D99F0036F712 /* IMService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMService.h; sourceTree = "<group>"; };
@@ -817,6 +821,8 @@
 				C55B443A1C94D99F0036F712 /* IMService.m */,
 				C59366DE1C96F64700C16770 /* AbstractXMPPConnection.h */,
 				C59366DF1C96F64700C16770 /* AbstractXMPPConnection.m */,
+				C503F2481C9A4E8D00421865 /* SDPrintLog.h */,
+				C503F2491C9A4E8D00421865 /* SDPrintLog.m */,
 			);
 			path = IMService;
 			sourceTree = "<group>";
@@ -849,6 +855,7 @@
 				C503F1E21C99582E00421865 /* XMPPvCardTempTel.h in Headers */,
 				C503F1D21C99582E00421865 /* XMPPvCardTempCoreDataStorageObject.h in Headers */,
 				C503F20F1C99582E00421865 /* DDXMLPrivate.h in Headers */,
+				C503F24A1C9A4E8D00421865 /* SDPrintLog.h in Headers */,
 				C503F2101C99582E00421865 /* DDASLLogger.h in Headers */,
 				C503F1EF1C99582E00421865 /* XMPPCapabilitiesCoreDataStorage.h in Headers */,
 				C503F1941C99582E00421865 /* XMPPFramework.h in Headers */,
@@ -995,6 +1002,7 @@
 				C503F20E1C99582E00421865 /* DDXMLNode.m in Sources */,
 				C503F2021C99582E00421865 /* XMPPElement+Delay.m in Sources */,
 				C503F1ED1C99582E00421865 /* XMPPTransports.m in Sources */,
+				C503F24B1C9A4E8D00421865 /* SDPrintLog.m in Sources */,
 				C503F19C1C99582E00421865 /* XMPPMessage.m in Sources */,
 				C503F1C81C99582E00421865 /* XMPPRoom.m in Sources */,
 				C503F1DD1C99582E00421865 /* XMPPvCardTempEmail.m in Sources */,

@@ -32,4 +32,9 @@
 
 @interface AbstractXMPPConnection : NSObject
 
+@property (nonatomic, strong,readonly) NSString * username;
+@property (nonatomic, strong,readonly) NSString * userpassword;
+@property (nonatomic, strong,readonly) NSString * hostName;
+
+- (id)initWithName:(NSString *)userName andPassword:(NSString * )password andServiceName:(NSString *)serviceName;
 @end
