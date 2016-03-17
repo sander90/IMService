@@ -32,6 +32,7 @@
     self = [super init];
     if (self) {
         IMService * im = [IMService initIMService];
+        im.delegate = self;
         [im setStreamHoatName:serviceName andHostPort:5222];
         _username = userName;
         _userpassword = password;
@@ -61,12 +62,19 @@
 
 
 
+- (void)goOnline
+{
+    IMService * im = [IMService initIMService];
+    
+    XMPPPresence *presence = [XMPPPresence presence]; // type="available" is implicit
+    
+    [im.xmppStream sendElement:presence];
+}
 
-#pragma mark - xmppstream delegate
+#pragma mark - IMService delegate
 
 -(void)IMServiceDidConnect
 {
-    
     IMService * im = [IMService initIMService];
 
     NSError * error = nil;
@@ -75,13 +83,10 @@
     if (error) {
         [SDPrintLog printLog:[NSString stringWithFormat:@"%@",error]];
     }
-    
-    
 }
 
-
-
-
-
-
+- (void)IMServiceDidAuthenticate
+{
+    [self goOnline];
+}
 @end

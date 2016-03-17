@@ -14,7 +14,8 @@
 
 @protocol IMServiceDelegate <NSObject>
 
--(void)IMServiceDidConnect;
+- (void)IMServiceDidConnect;
+- (void)IMServiceDidAuthenticate;
 
 @end
 

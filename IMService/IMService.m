@@ -204,11 +204,9 @@
 {
     NSLog(@"[xmppStreamDidAuthenticate]");
     //登录成功
-    
-    XMPPPresence *presence = [XMPPPresence presence]; // type="available" is implicit
-    
-    //    [[self xmppStream] sendElement:presence];
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidAuthenticate)]) {
+        [self.delegate IMServiceDidAuthenticate];
+    }
 }
 
 /**
