@@ -180,6 +180,8 @@
 		C503F24B1C9A4E8D00421865 /* SDPrintLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F2491C9A4E8D00421865 /* SDPrintLog.m */; };
 		C503F2681C9A7D7F00421865 /* Chat.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F2661C9A7D7F00421865 /* Chat.h */; };
 		C503F2691C9A7D7F00421865 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F2671C9A7D7F00421865 /* Chat.m */; };
+		C514B3E01C9D36AA006D6409 /* SDXMPPService.h in Headers */ = {isa = PBXBuildFile; fileRef = C514B3DE1C9D36AA006D6409 /* SDXMPPService.h */; };
+		C514B3E11C9D36AA006D6409 /* SDXMPPService.m in Sources */ = {isa = PBXBuildFile; fileRef = C514B3DF1C9D36AA006D6409 /* SDXMPPService.m */; };
 		C5302ACF1C96AEF20060C66B /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C55B44381C94D99F0036F712 /* IMService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5302AE41C96B25A0060C66B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302AE31C96B25A0060C66B /* Foundation.framework */; };
 		C55B44391C94D99F0036F712 /* IMService.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C55B44381C94D99F0036F712 /* IMService.h */; };
@@ -377,6 +379,8 @@
 		C503F2491C9A4E8D00421865 /* SDPrintLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPrintLog.m; sourceTree = "<group>"; };
 		C503F2661C9A7D7F00421865 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
 		C503F2671C9A7D7F00421865 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
+		C514B3DE1C9D36AA006D6409 /* SDXMPPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDXMPPService.h; sourceTree = "<group>"; };
+		C514B3DF1C9D36AA006D6409 /* SDXMPPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDXMPPService.m; sourceTree = "<group>"; };
 		C5302AE31C96B25A0060C66B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C55B44351C94D99F0036F712 /* libIMService.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIMService.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55B44381C94D99F0036F712 /* IMService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMService.h; sourceTree = "<group>"; };
@@ -829,6 +833,8 @@
 				C503F2491C9A4E8D00421865 /* SDPrintLog.m */,
 				C503F2661C9A7D7F00421865 /* Chat.h */,
 				C503F2671C9A7D7F00421865 /* Chat.m */,
+				C514B3DE1C9D36AA006D6409 /* SDXMPPService.h */,
+				C514B3DF1C9D36AA006D6409 /* SDXMPPService.m */,
 			);
 			path = IMService;
 			sourceTree = "<group>";
@@ -929,6 +935,7 @@
 				C503F1F71C99582E00421865 /* XMPPvCardAvatarModule.h in Headers */,
 				C503F1B71C99582E00421865 /* XMPPRosterMemoryStoragePrivate.h in Headers */,
 				C503F1B81C99582E00421865 /* XMPPUserMemoryStorage.h in Headers */,
+				C514B3E01C9D36AA006D6409 /* SDXMPPService.h in Headers */,
 				C503F21E1C99582E00421865 /* LibIDN.h in Headers */,
 				C503F1FF1C99582E00421865 /* XMPPTime.h in Headers */,
 				C503F2291C99582E00421865 /* XMPPXFacebookPlatformAuthentication.h in Headers */,
@@ -1077,6 +1084,7 @@
 				C503F1D71C99582E00421865 /* XMPPvCardTempAdr.m in Sources */,
 				C503F1F61C99582E00421865 /* XMPPCapabilities.m in Sources */,
 				C503F1901C99582E00421865 /* NSXMLElement+XMPP.m in Sources */,
+				C514B3E11C9D36AA006D6409 /* SDXMPPService.m in Sources */,
 				C503F2151C99582E00421865 /* DDLog.m in Sources */,
 				C503F1B21C99582E00421865 /* XMPPUserCoreDataStorageObject.m in Sources */,
 				C503F1C01C99582E00421865 /* XMPPIQ+JabberRPC.m in Sources */,

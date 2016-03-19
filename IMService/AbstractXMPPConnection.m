@@ -46,7 +46,7 @@
        
         
                //不知道为什么，这里会出现错误，错误的缘由还不清楚是什么
-//        [im.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+        [im.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 
     }
     return self;
@@ -95,4 +95,16 @@
 {
     [self goOnline];
 }
+
+
+- (void)xmppStreamDidConnect:(XMPPStream *)sender
+{
+    [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidConnect"];
+    
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidConnect)]) {
+//        [self.delegate IMServiceDidConnect];
+//    }
+    
+}
+
 @end
