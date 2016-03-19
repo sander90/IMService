@@ -20,6 +20,8 @@
 #import <CFNetwork/CFNetwork.h>
 
 #import "SDPrintLog.h"
+
+
 @implementation SDXMPP
 - (id)init
 {
@@ -31,6 +33,7 @@
 }
 - (id)initWithMyname:(NSString * )myname andMyPassword:(NSString * )passWord andMyHostname:(NSString * )hostName andPort:(UInt16)port;
 {
+    
     self = [super init];
     if (self) {
         _myName = myname;
@@ -40,11 +43,14 @@
         [self setupXmpp];
     }
     return self;
+   
 }
 #pragma mark - 初始化 xmpp
 - (void)setupXmpp
 {
-    _xmppStream = [[XMPPStream alloc] init];
+    
+        _xmppStream = [[XMPPStream alloc] init];
+    
     
     if ([self.xmppStream isConnected]) {
         [self.xmppStream disconnect];
@@ -68,12 +74,43 @@
     }
     
 }
+
+#pragma mark 功能
+#pragma mark - 在线
 - (void)goOnline
 {
     XMPPPresence *presence = [XMPPPresence elementWithName:@"presence"];
     [self.xmppStream sendElement:presence];
 }
+#pragma mark - 发送信息给好友
+- (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid
+{
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:message];
+    
+    NSXMLElement *messageElement = [NSXMLElement elementWithName:@"message"];
+    [messageElement addAttributeWithName:@"type" stringValue:@"chat"];
+    [messageElement addAttributeWithName:@"to" stringValue:[friendJid full]];
+    [messageElement addChild:body];
+    [self.xmppStream sendElement:messageElement];
+}
 
+#pragma mark 服务
+
+#pragma mark - 连接成功
+- (void)SDDidConnectXMPPStream:(XMPPStream * )sender
+{
+    int a = 0;
+}
+#pragma mark - 连接失败
+- (void)SDFaildConnectXMPPStream:(XMPPStream * )sender andError:(NSXMLElement * )error
+{
+    int a = 0;
+}
+- (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
+{
+    
+}
 
 #pragma mark - XMPPStreamDelegate
 /**
@@ -170,8 +207,12 @@
 - (void)xmppStreamDidConnect:(XMPPStream *)sender
 {
     [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidConnect"];
+    NSError * error;
+    [self.xmppStream authenticateWithPassword:self.myPassword error:&error];
+    if (error) {
+        [SDPrintLog printLog:@"" WithTag:@"登录失败"];
+    }
     
-    [self goOnline];
 }
 
 /**
@@ -198,7 +239,7 @@
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
     [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidAuthenticate"];
-    
+    [self goOnline];
     [self SDDidConnectXMPPStream:sender];
 }
 
@@ -235,6 +276,8 @@
         NSString * fromeName = fromjid.user;
         
         [SDPrintLog printLog:[NSString stringWithFormat:@"%@--->%@",fromeName,body] WithTag:@"didReceiveMessage"];
+        
+        [self IMServicedidReceiveMessage:body from:fromeName];
         
         // 不能载这里写。
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)

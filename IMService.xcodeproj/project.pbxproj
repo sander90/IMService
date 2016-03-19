@@ -185,6 +185,8 @@
 		C59366E11C96F64700C16770 /* AbstractXMPPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C59366DF1C96F64700C16770 /* AbstractXMPPConnection.m */; };
 		C5F1CD191C9D4ED10003AF89 /* SDXMPP.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */; };
 		C5F1CD1A1C9D4ED10003AF89 /* SDXMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */; };
+		C5F1CD1D1C9D55CF0003AF89 /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD1B1C9D55CF0003AF89 /* IMService.h */; };
+		C5F1CD1E1C9D55CF0003AF89 /* IMService.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1CD1C1C9D55CF0003AF89 /* IMService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -381,6 +383,8 @@
 		C59366DF1C96F64700C16770 /* AbstractXMPPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractXMPPConnection.m; sourceTree = "<group>"; };
 		C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDXMPP.h; sourceTree = "<group>"; };
 		C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDXMPP.m; sourceTree = "<group>"; };
+		C5F1CD1B1C9D55CF0003AF89 /* IMService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMService.h; sourceTree = "<group>"; };
+		C5F1CD1C1C9D55CF0003AF89 /* IMService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -827,6 +831,8 @@
 				C503F2671C9A7D7F00421865 /* Chat.m */,
 				C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */,
 				C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */,
+				C5F1CD1B1C9D55CF0003AF89 /* IMService.h */,
+				C5F1CD1C1C9D55CF0003AF89 /* IMService.m */,
 			);
 			path = IMService;
 			sourceTree = "<group>";
@@ -928,6 +934,7 @@
 				C503F1B71C99582E00421865 /* XMPPRosterMemoryStoragePrivate.h in Headers */,
 				C503F1B81C99582E00421865 /* XMPPUserMemoryStorage.h in Headers */,
 				C503F21E1C99582E00421865 /* LibIDN.h in Headers */,
+				C5F1CD1D1C9D55CF0003AF89 /* IMService.h in Headers */,
 				C503F1FF1C99582E00421865 /* XMPPTime.h in Headers */,
 				C503F2291C99582E00421865 /* XMPPXFacebookPlatformAuthentication.h in Headers */,
 				C503F1C51C99582E00421865 /* XMPPMessage+XEP0045.h in Headers */,
@@ -1035,6 +1042,7 @@
 				C503F2281C99582E00421865 /* XMPPSRVResolver.m in Sources */,
 				C503F2211C99582E00421865 /* RFImageToDataTransformer.m in Sources */,
 				C503F1E71C99582E00421865 /* TURNSocket.m in Sources */,
+				C5F1CD1E1C9D55CF0003AF89 /* IMService.m in Sources */,
 				C503F1D91C99582E00421865 /* XMPPvCardTempAdrTypes.m in Sources */,
 				C503F1F81C99582E00421865 /* XMPPvCardAvatarModule.m in Sources */,
 				C503F1EE1C99582E00421865 /* XMPPCapabilities.xcdatamodel in Sources */,

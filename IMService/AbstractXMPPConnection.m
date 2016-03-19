@@ -12,6 +12,8 @@
 
 @interface AbstractXMPPConnection ()
 
+
+
 @end
 
 @implementation AbstractXMPPConnection
@@ -27,15 +29,20 @@
 
 - (id)initWithName:(NSString *)userName andPassword:(NSString * )password andServiceName:(NSString *)serviceName
 {
-    self = [super initWithMyname:userName andMyPassword:password andMyHostname:serviceName andPort:5222];
+    
+    self = [super init];
     if (self) {
-        
+        IMService * im = [IMService initService];
+        [im setupWithMyname:userName andMyPassword:password andMyHostname:serviceName andPort:5222];
+        [im setXmppConnection:self];
+        [im setupXmpp];        
     }
     return self;
 }
 
 - (void)connect{
-    [super connect];
+    IMService * im = [IMService initService];
+    [im connect];
 }
 
 

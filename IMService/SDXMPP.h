@@ -12,6 +12,9 @@
 #import "XMPPFramework.h"
 
 @interface SDXMPP : NSObject
+{
+    
+}
 
 @property (nonatomic, readonly) XMPPStream * xmppStream;
 
@@ -27,10 +30,7 @@
 
 - (id)initWithMyname:(NSString * )myname andMyPassword:(NSString * )passWord andMyHostname:(NSString * )hostName andPort:(UInt16)port;
 
-/**
- * 连接服务器，登录
- */
-- (void)connect;
+#pragma mark - 服务
 /**
  * 连接成功
  */
@@ -40,4 +40,23 @@
  */
 - (void)SDFaildConnectXMPPStream:(XMPPStream * )sender andError:(NSXMLElement * )error;
 
+/**
+ *  获取朋友的信息
+ */
+- (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName;
+
+
+#pragma mark - 功能
+/**
+ * 连接服务器，登录
+ */
+- (void)connect;
+/**
+ * 初始化 XMPPStream
+ */
+- (void)setupXmpp;
+/**
+ * 发送信息给好友
+ */
+- (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid;
 @end
