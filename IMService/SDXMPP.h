@@ -1,5 +1,5 @@
 //
-//  SDXMPPService.h
+//  SDXMPP.h
 //  IMService
 //
 //  Created by shansander on 16/3/19.
@@ -11,16 +11,21 @@
 
 #import "XMPPFramework.h"
 
-@interface SDXMPPService : NSObject
+@interface SDXMPP : NSObject
 
 @property (nonatomic, readonly) XMPPStream * xmppStream;
 
 @property (nonatomic, strong) NSString * myName;
 
+@property (nonatomic, strong) NSString * myPassword;
+
 @property (nonatomic, strong) NSString * myHostName;
 
 @property (nonatomic, assign) UInt16 myPort;
 
+
+
+- (id)initWithMyname:(NSString * )myname andMyPassword:(NSString * )passWord andMyHostname:(NSString * )hostName andPort:(UInt16)port;
 
 /**
  * 连接服务器，登录
@@ -34,8 +39,5 @@
  * 连接失败
  */
 - (void)SDFaildConnectXMPPStream:(XMPPStream * )sender andError:(NSXMLElement * )error;
-
-
-
 
 @end

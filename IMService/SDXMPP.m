@@ -1,12 +1,12 @@
 //
-//  SDXMPPService.m
+//  SDXMPP.m
 //  IMService
 //
 //  Created by shansander on 16/3/19.
 //  Copyright © 2016年 shansander. All rights reserved.
 //
 
-#import "SDXMPPService.h"
+#import "SDXMPP.h"
 #import "GCDAsyncSocket.h"
 #import "XMPP.h"
 #import "XMPPReconnect.h"
@@ -14,36 +14,29 @@
 #import "XMPPRosterCoreDataStorage.h"
 #import "XMPPvCardAvatarModule.h"
 #import "XMPPvCardCoreDataStorage.h"
-
 #import "DDLog.h"
 #import "DDTTYLogger.h"
 
 #import <CFNetwork/CFNetwork.h>
 
 #import "SDPrintLog.h"
-
-
-@interface SDXMPPService ()<XMPPStreamDelegate>
-
-@end
-
-@implementation SDXMPPService
-
+@implementation SDXMPP
 - (id)init
 {
     self = [super init];
     if (self) {
-        
+        [self setupXmpp];
     }
     return self;
 }
-- (id)initWithMyname:(NSString * )myname andMyHostname:(NSString * )hostName andPort:(UInt16)port
+- (id)initWithMyname:(NSString * )myname andMyPassword:(NSString * )passWord andMyHostname:(NSString * )hostName andPort:(UInt16)port;
 {
     self = [super init];
     if (self) {
         _myName = myname;
         _myHostName = hostName;
         _myPort = port;
+        _myPassword = passWord;
         [self setupXmpp];
     }
     return self;
@@ -53,16 +46,27 @@
 {
     _xmppStream = [[XMPPStream alloc] init];
     
+    if ([self.xmppStream isConnected]) {
+        [self.xmppStream disconnect];
+        [SDPrintLog printLog:@"" WithTag:@"不应该出现连接，断开连接"];
+    }
+    
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 }
 
 #pragma mark - 登录
 - (void)connect
 {
-    if ([self.xmppStream isConnected]) {
-        [self.xmppStream disconnect];
-        [SDPrintLog printLog:@"" WithTag:@"不应该出现连接，断开连接"];
+    XMPPJID * myjid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",self.myName,self.myHostName]];
+    [self.xmppStream setMyJID:myjid];
+    NSError * error;
+    BOOL reslut = [self.xmppStream connect:&error];
+    if (reslut) {
+        [SDPrintLog printLog:@"连接服务器成功"];
+    }else{
+        [SDPrintLog printLog:[NSString stringWithFormat:@"连接服务器失败 %@",error]];
     }
+    
 }
 - (void)goOnline
 {
@@ -372,8 +376,5 @@
 {
     [SDPrintLog printLog:@"" WithTag:@"didReceivePresenceSubscriptionRequest"];
 }
-
-
-
 
 @end

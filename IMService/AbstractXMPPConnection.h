@@ -30,7 +30,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+#import "SDXMPP.h"
 
 @protocol XmppConnectionDelegate <NSObject>
 
@@ -40,7 +40,7 @@
 
 @end
 
-@interface AbstractXMPPConnection : NSObject
+@interface AbstractXMPPConnection : SDXMPP
 
 @property (nonatomic, strong) id<XmppConnectionDelegate>delegate;
 
