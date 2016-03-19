@@ -59,7 +59,15 @@
 #pragma mark - 登录
 - (void)connect
 {
-    
+    if ([self.xmppStream isConnected]) {
+        [self.xmppStream disconnect];
+        [SDPrintLog printLog:@"" WithTag:@"不应该出现连接，断开连接"];
+    }
+}
+- (void)goOnline
+{
+    XMPPPresence *presence = [XMPPPresence elementWithName:@"presence"];
+    [self.xmppStream sendElement:presence];
 }
 
 
@@ -159,9 +167,7 @@
 {
     [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidConnect"];
     
-    //    if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidConnect)]) {
-    //        [self.delegate IMServiceDidConnect];
-    //    }
+    [self goOnline];
 }
 
 /**
@@ -188,10 +194,8 @@
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
     [SDPrintLog printLog:@"" WithTag:@"xmppStreamDidAuthenticate"];
-    //    //登录成功
-    //    if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidAuthenticate)]) {
-    //        [self.delegate IMServiceDidAuthenticate];
-    //
+    
+    [self SDDidConnectXMPPStream:sender];
 }
 
 /**
@@ -200,6 +204,8 @@
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error
 {
     [SDPrintLog printLog:@"" WithTag:@"didNotAuthenticate"];
+    
+    [self SDFaildConnectXMPPStream:sender andError:error];
 }
 
 /**

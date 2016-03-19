@@ -33,7 +33,7 @@
 /**
  * 连接失败
  */
-- (void)SDFaildConnectXMPPStream:(XMPPStream * )sender andError:(NSError * )error;
+- (void)SDFaildConnectXMPPStream:(XMPPStream * )sender andError:(NSXMLElement * )error;
 
 
 
