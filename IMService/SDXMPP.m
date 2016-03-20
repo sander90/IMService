@@ -14,12 +14,22 @@
 #import "XMPPRosterCoreDataStorage.h"
 #import "XMPPvCardAvatarModule.h"
 #import "XMPPvCardCoreDataStorage.h"
+#import "XMPPRosterMemoryStorage.h"
 #import "DDLog.h"
 #import "DDTTYLogger.h"
+
 
 #import <CFNetwork/CFNetwork.h>
 
 #import "SDPrintLog.h"
+
+@interface SDXMPP ()<XMPPStreamDelegate,XMPPRosterDelegate>
+
+@property (nonatomic)  XMPPRosterMemoryStorage * xmppRosterMenoryStorage;
+
+//@property (nonatomic) XMPPMessage
+
+@end
 
 
 @implementation SDXMPP
@@ -49,8 +59,22 @@
 - (void)setupXmpp
 {
     
-        _xmppStream = [[XMPPStream alloc] init];
+    _xmppStream = [[XMPPStream alloc] init];
     
+    //接入断线重连模块
+    _xmppReconnect = [[XMPPReconnect alloc] init];
+    [self.xmppReconnect setAutoReconnect:YES];
+    [self.xmppReconnect activate:self.xmppStream];
+    
+    
+    //接入好友列表,可以获取好友列表
+    _xmppRosterMenoryStorage = [[XMPPRosterMemoryStorage alloc] init];
+    
+    _xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:self.xmppRosterMenoryStorage];
+    
+    [self.xmppRoster activate:self.xmppStream];
+    
+    [self.xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
     if ([self.xmppStream isConnected]) {
         [self.xmppStream disconnect];
@@ -415,6 +439,7 @@
 {
     [SDPrintLog printLog:@"" WithTag:@"willUnregisterModule"];
 }
+//为了收集好友的列表
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
     [SDPrintLog printLog:@"" WithTag:@"didReceivePresenceSubscriptionRequest"];

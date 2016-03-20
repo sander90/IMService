@@ -10,7 +10,6 @@
 
 #import "IMService.h"
 
-
 @protocol ChatDelegate <NSObject>
 
 - (void)XMPPdidReceiveMessage:(NSString * )message;

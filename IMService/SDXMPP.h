@@ -18,6 +18,10 @@
 
 @property (nonatomic, readonly) XMPPStream * xmppStream;
 
+@property (nonatomic, readonly) XMPPReconnect * xmppReconnect;
+
+@property (nonatomic, readonly) XMPPRoster * xmppRoster;
+
 @property (nonatomic, strong) NSString * myName;
 
 @property (nonatomic, strong) NSString * myPassword;
