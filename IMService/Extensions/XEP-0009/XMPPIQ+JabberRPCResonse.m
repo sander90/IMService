@@ -169,7 +169,7 @@
 		return [self parseData:[param stringValue]];
 	} else {
 		// bad element
-		XMPPLogWarn(@"%@: %@ - bad element: %@", THIS_FILE, THIS_METHOD, [param stringValue]);
+//		XMPPLogWarn(@"%@: %@ - bad element: %@", THIS_FILE, THIS_METHOD, [param stringValue]);
 	}
 	return nil;
 }				

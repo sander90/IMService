@@ -31,7 +31,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 		
 		NSString *authStr = [[[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding] autorelease];
 		
-		XMPPLogVerbose(@"%@: Decoded challenge: %@", THIS_FILE, authStr);
+//		XMPPLogVerbose(@"%@: Decoded challenge: %@", THIS_FILE, authStr);
 		
 		// Extract all the key=value pairs, and put them in a dictionary for easy lookup
 		NSMutableDictionary *auth = [NSMutableDictionary dictionaryWithCapacity:5];
@@ -172,7 +172,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 	[buffer appendFormat:@"response=%@,", [self response]];
 	[buffer appendFormat:@"charset=utf-8"];
 	
-	XMPPLogSend(@"decoded response: %@", buffer);
+//	XMPPLogSend(@"decoded response: %@", buffer);
 	
 	NSData *utf8data = [buffer dataUsingEncoding:NSUTF8StringEncoding];
 	

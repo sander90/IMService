@@ -59,7 +59,7 @@
  * If you created your project with a previous version of Xcode, you may need to add the DEBUG macro manually.
 **/
 
-#import "DDLog.h"
+//#import "DDLog.h"
 
 // Define logging context for every log message coming from the XMPP framework.
 // The logging context can be extracted from the DDLogMessage from within the logging framework.

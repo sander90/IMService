@@ -121,7 +121,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 - (void)setDefaultTimeout:(NSTimeInterval)newDefaultTimeout
 {
 	dispatch_block_t block = ^{
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		defaultTimeout = newDefaultTimeout;
 	};
 	
@@ -144,7 +144,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 {
 	if ((self = [super initWithDispatchQueue:queue]))
 	{
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		rpcIDs = [[NSMutableDictionary alloc] initWithCapacity:5];
 		defaultTimeout = 5.0;
@@ -154,7 +154,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 
 - (BOOL)activate:(XMPPStream *)aXmppStream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ([super activate:aXmppStream])
 	{
@@ -170,7 +170,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 
 - (void)deactivate
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 #if INTEGRATE_WITH_CAPABILITIES
 	[xmppStream removeAutoDelegate:self delegateQueue:moduleQueue fromModulesOfClass:[XMPPCapabilities class]];
@@ -181,7 +181,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 
 - (void)dealloc
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[rpcIDs release];
 	[super dealloc];
@@ -198,7 +198,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 
 - (NSString *)sendRpcIQ:(XMPPIQ *)iq withTimeout:(NSTimeInterval)timeout
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	NSString *elementID = [iq elementID];
 	
@@ -229,7 +229,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 
 - (void)timeoutRemoveRpcID:(NSString *)elementID
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	RPCID *rpcID = [rpcIDs objectForKey:elementID];
 	if (rpcID)
@@ -252,7 +252,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ([iq isJabberRPC])
 	{
@@ -274,7 +274,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 				return NO;
 			}
 			
-			XMPPLogVerbose(@"%@: Received RPC response!", THIS_FILE);
+//			XMPPLogVerbose(@"%@: Received RPC response!", THIS_FILE);
 			
 			if ([iq isResultIQ])
 			{
@@ -333,7 +333,7 @@ NSString *const XMPPJabberRPCErrorDomain = @"XMPPJabberRPCErrorDomain";
 **/
 - (void)xmppCapabilities:(XMPPCapabilities *)sender collectingMyCapabilities:(NSXMLElement *)query
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// <query xmlns="http://jabber.org/protocol/disco#info">
 	//   ...

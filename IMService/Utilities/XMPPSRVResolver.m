@@ -46,7 +46,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 	
 	if ((self = [super init]))
 	{
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		delegate = aDelegate;
 		delegateQueue = dq;
@@ -69,7 +69,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 
 - (void)dealloc
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
     [self stop];
 	
@@ -129,7 +129,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 {
 	NSAssert(dispatch_get_current_queue() == resolverQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// Sort results
 	NSMutableArray *sortedResults = [NSMutableArray arrayWithCapacity:[results count]];
@@ -249,14 +249,14 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 	[results release];
 	results = [sortedResults retain];
 	
-	XMPPLogVerbose(@"%@: Sorted results:\n%@", THIS_FILE, results);
+//	XMPPLogVerbose(@"%@: Sorted results:\n%@", THIS_FILE, results);
 }
 
 - (void)succeed
 {
 	NSAssert(dispatch_get_current_queue() == resolverQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self sortResults];
 	
@@ -274,7 +274,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 		}
 		else
 		{
-			XMPPLogWarn(@"%@: delegate doesn't implement %@", THIS_FILE, NSStringFromSelector(selector));
+//			XMPPLogWarn(@"%@: delegate doesn't implement %@", THIS_FILE, NSStringFromSelector(selector));
 		}
 		
 		[pool drain];
@@ -288,7 +288,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 {
 	NSAssert(dispatch_get_current_queue() == resolverQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace2(@"%@: %@ %@", THIS_FILE, THIS_METHOD, error);
+//	XMPPLogTrace2(@"%@: %@ %@", THIS_FILE, THIS_METHOD, error);
 	
 	id theDelegate = delegate;
 	
@@ -304,7 +304,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
             }
             else
             {
-            XMPPLogWarn(@"%@: delegate doesn't implement %@", THIS_FILE, NSStringFromSelector(selector));
+//            XMPPLogWarn(@"%@: delegate doesn't implement %@", THIS_FILE, NSStringFromSelector(selector));
             }
 
             [pool drain];
@@ -316,14 +316,14 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 
 - (void)failWithDNSError:(DNSServiceErrorType)sdErr
 {
-	XMPPLogTrace2(@"%@: %@ %i", THIS_FILE, THIS_METHOD, (int)sdErr);
+//	XMPPLogTrace2(@"%@: %@ %i", THIS_FILE, THIS_METHOD, (int)sdErr);
 	
 	[self failWithError:[NSError errorWithDomain:XMPPSRVResolverErrorDomain code:sdErr userInfo:nil]];
 }
 
 - (XMPPSRVRecord *)processRecord:(const void *)rdata length:(uint16_t)rdlen
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// Note: This method is almost entirely from Apple's sample code.
 	// 
@@ -331,7 +331,7 @@ NSString *const XMPPSRVResolverErrorDomain = @"XMPPSRVResolverErrorDomain";
 	
 	if (rdata == NULL)
 	{
-		XMPPLogWarn(@"%@: %@ - rdata == NULL", THIS_FILE, THIS_METHOD);
+//		XMPPLogWarn(@"%@: %@ - rdata == NULL", THIS_FILE, THIS_METHOD);
 		return nil;
 	}
 	
@@ -403,7 +403,7 @@ static void QueryRecordCallback(DNSServiceRef       sdRef,
 	
 	NSCAssert(dispatch_get_current_queue() == resolver->resolverQueue, @"Invoked on incorrect queue");
     
-	XMPPLogCTrace();
+//	XMPPLogCTrace();
 	
 	if (!(flags & kDNSServiceFlagsAdd))
 	{
@@ -446,7 +446,7 @@ static void QueryRecordCallback(DNSServiceRef       sdRef,
 			return;
 		}
 		
-		XMPPLogTrace2(@"%@: startWithSRVName:%@ timeout:%f", THIS_FILE, aSRVName, aTimeout);
+//		XMPPLogTrace2(@"%@: startWithSRVName:%@ timeout:%f", THIS_FILE, aSRVName, aTimeout);
 		
 		// Save parameters
 		
@@ -502,7 +502,7 @@ static void QueryRecordCallback(DNSServiceRef       sdRef,
 		dispatch_source_set_event_handler(sdReadSource, ^{
 			NSAutoreleasePool *handlerPool = [[NSAutoreleasePool alloc] init];
 			
-			XMPPLogVerbose(@"%@: sdReadSource_eventHandler", THIS_FILE);
+//			XMPPLogVerbose(@"%@: sdReadSource_eventHandler", THIS_FILE);
 			
 			// There is data to be read on the socket (or an error occurred).
 			// 
@@ -524,7 +524,7 @@ static void QueryRecordCallback(DNSServiceRef       sdRef,
 		dispatch_source_set_cancel_handler(sdReadSource, ^{
 			NSAutoreleasePool *handlerPool = [[NSAutoreleasePool alloc] init];
 			
-			XMPPLogVerbose(@"%@: sdReadSource_cancelHandler", THIS_FILE);
+//			XMPPLogVerbose(@"%@: sdReadSource_cancelHandler", THIS_FILE);
 			
 			dispatch_release(theSdReadSource);
 			DNSServiceRefDeallocate(theSdRef);
@@ -574,7 +574,7 @@ static void QueryRecordCallback(DNSServiceRef       sdRef,
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		delegate = nil;
 		if (delegateQueue)

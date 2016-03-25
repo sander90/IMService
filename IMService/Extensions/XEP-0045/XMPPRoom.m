@@ -65,7 +65,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 		
 		occupants = [[NSMutableDictionary alloc] init];
 		
-		XMPPLogTrace2(@"%@: init -> roomName(%@) nickName(%@)", [self class], roomName, nickName);
+//		XMPPLogTrace2(@"%@: init -> roomName(%@) nickName(%@)", [self class], roomName, nickName);
 	}
 	return self;
 }
@@ -84,7 +84,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 
 - (void)deactivate
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (self.isJoined)
 	{
@@ -259,7 +259,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// <presence to='darkcave@chat.shakespeare.lit/firstwitch'>
 		//   <x xmlns='http://jabber.org/protocol/muc'/>
@@ -289,7 +289,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// <iq type='set'
 		//     from='crone1@shakespeare.lit/desktop'
@@ -328,7 +328,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// <presence to='darkcave@chat.shakespeare.lit/thirdwitch'/>
 		
@@ -353,7 +353,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// <presence type='unavailable' to='darkcave@chat.shakespeare.lit/thirdwitch'/>
 		
@@ -385,7 +385,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		if (![nickName isEqual:newNickNameCopy])
 		{
@@ -415,7 +415,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// <message to='darkcave@chat.shakespeare.lit'>
 		//   <x xmlns='http://jabber.org/protocol/muc#user'>
@@ -456,7 +456,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// Just need to send presence to room to accept it. We are done.
 		[self joinRoom];
@@ -480,7 +480,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// <message to='darkcave@chat.shakespeare.lit'>
 		//   <x xmlns='http://jabber.org/protocol/muc#user'>
@@ -534,7 +534,7 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	dispatch_block_t block = ^{
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogTrace();
+//		XMPPLogTrace();
 		
 		// <message type='groupchat' to='darkcave@chat.shakespeare.lit/firstwitch'>
 		//   <body>I'll give thee a wind.</body>
@@ -590,11 +590,13 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	
 	if (![aRoomName isEqualToString:roomName]) return;
 	
-	XMPPLogTrace2(@"%@: didReceivePresence: ROOM: %@", [self class], roomName);
+//	XMPPLogTrace2(@"%@: didReceivePresence: ROOM: %@", [self class], roomName);
 	
 	NSXMLElement *priorityElement = [presence elementForName:@"priority"];
-	if (priorityElement)
-		XMPPLogVerbose(@"%@: didReceivePresence: priority:%@", [self class], [priorityElement stringValue]);
+    if (priorityElement){
+        
+    }
+//		XMPPLogVerbose(@"%@: didReceivePresence: priority:%@", [self class], [priorityElement stringValue]);
 	
 	NSXMLElement *x = [presence elementForName:@"x" xmlns:XMPPMUCUserNamespaceName];
 	NSXMLElement *xItem = [x elementForName:@"item"];
@@ -603,8 +605,8 @@ static NSString *const XMPPMUCOwnerNamespaceName = @"http://jabber.org/protocol/
 	NSString *role    = [xItem attributeStringValueForName:@"role"];
 	NSString *newNick = [xItem attributeStringValueForName:@"nick"];
 	
-	XMPPLogVerbose(@"%@: didReceivePresence: nick:%@ role:%@ newnick:%@ jid:%@",
-				   [self class], aNickName, role, newNick, jidStr);
+//	XMPPLogVerbose(@"%@: didReceivePresence: nick:%@ role:%@ newnick:%@ jid:%@",
+//				   [self class], aNickName, role, newNick, jidStr);
 	
 	if (newNick)
 	{

@@ -35,7 +35,7 @@
         NSString *authStr = [[[NSString alloc] initWithData:decodedData 
                                                    encoding:NSUTF8StringEncoding] autorelease];
             
-        XMPPLogVerbose(@"XMPPXFacebookPlatformAuthentication: decoded challenge: %@", authStr);
+       // XMPPLogVerbose(@"XMPPXFacebookPlatformAuthentication: decoded challenge: %@", authStr);
             
         // Extract all the key=value pairs, and put them in a dictionary for easy lookup
         NSMutableDictionary *auth = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -103,7 +103,7 @@
     [buffer appendFormat:@"call_id=%d&", rand()];
     [buffer appendFormat:@"v=%@",@"1.0"];
 
-    XMPPLogVerbose(@"XMPPXFacebookPlatformAuthentication: response for facebook: %@", buffer);
+  //  XMPPLogVerbose(@"XMPPXFacebookPlatformAuthentication: response for facebook: %@", buffer);
 
     NSData *utf8data = [buffer dataUsingEncoding:NSUTF8StringEncoding];
 
