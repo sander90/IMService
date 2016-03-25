@@ -18,6 +18,7 @@
     printf("##\n");
     printf("##############\n\n");
 
+    printf("Test By XHF");
 }
 
 +(void)printLog:(NSString *)content WithTag:(NSString * )tag
