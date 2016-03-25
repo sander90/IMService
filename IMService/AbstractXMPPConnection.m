@@ -8,6 +8,7 @@
 
 #import "AbstractXMPPConnection.h"
 #import "SDPrintLog.h"
+#import "IMService.h"
 
 
 @interface AbstractXMPPConnection ()

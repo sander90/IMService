@@ -76,6 +76,8 @@
     
     [self.xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
     
+    
+    
     if ([self.xmppStream isConnected]) {
         [self.xmppStream disconnect];
         [SDPrintLog printLog:@"" WithTag:@"不应该出现连接，断开连接"];
@@ -435,10 +437,10 @@
 {
     [SDPrintLog printLog:@"" WithTag:@"didRegisterModule"];
 }
-- (void)xmppStream:(XMPPStream *)sender willUnregisterModule:(id)module
-{
-    [SDPrintLog printLog:@"" WithTag:@"willUnregisterModule"];
-}
+//- (void)xmppStream:(XMPPStream *)sender willUnregisterModule:(id)module
+//{
+//    [SDPrintLog printLog:@"" WithTag:@"willUnregisterModule"];
+//}
 //为了收集好友的列表
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
