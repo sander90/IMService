@@ -9,7 +9,8 @@
 #import "Chat.h"
 
 
-@interface Chat ()<IMServiceDelegate>
+@interface Chat ()
+
 
 @end
 
@@ -29,14 +30,19 @@
 {
     self = [super init];
     if (self) {
+        IMService * im = [IMService initService];
+        NSString * jidName = [NSString stringWithFormat:@"%@@%@",frineName,im.myHostName];
+        _FriendJID = [XMPPJID jidWithString:jidName];
+        
+        [im setIMChat:self];
         
     }
     return self;
 }
-
-- (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
+- (void)sendMessage:(NSString * )message
 {
-    
+    IMService * im = [IMService initService];
+    [im sendMessage:message toFriendJID:self.FriendJID];
 }
 
 
