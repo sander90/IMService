@@ -32,9 +32,9 @@
 
 @class IMService;
 @protocol XmppConnectionDelegate <NSObject>
-
+@optional
 - (void)XMPPDidConnect;
-
+@optional
 - (void)XMPPNotConnect;
 
 @end

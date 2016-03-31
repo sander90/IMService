@@ -170,7 +170,7 @@
 		C503F2461C9974AE00421865 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2451C9974AE00421865 /* libresolv.9.dylib */; };
 		C503F24A1C9A4E8D00421865 /* SDPrintLog.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F2481C9A4E8D00421865 /* SDPrintLog.h */; };
 		C503F24B1C9A4E8D00421865 /* SDPrintLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F2491C9A4E8D00421865 /* SDPrintLog.m */; };
-		C503F2681C9A7D7F00421865 /* Chat.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F2661C9A7D7F00421865 /* Chat.h */; };
+		C503F2681C9A7D7F00421865 /* Chat.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F2661C9A7D7F00421865 /* Chat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C503F2691C9A7D7F00421865 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F2671C9A7D7F00421865 /* Chat.m */; };
 		C5302AE41C96B25A0060C66B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302AE31C96B25A0060C66B /* Foundation.framework */; };
 		C59366E01C96F64700C16770 /* AbstractXMPPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = C59366DE1C96F64700C16770 /* AbstractXMPPConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
