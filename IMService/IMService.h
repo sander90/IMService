@@ -2,48 +2,29 @@
 //  IMService.h
 //  IMService
 //
-//  Created by shansander on 16/3/13.
+//  Created by shansander on 16/3/19.
 //  Copyright © 2016年 shansander. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import <CoreData/CoreData.h>
+#import "SDXMPP.h"
 
-#import "XMPPFramework.h"
+@class AbstractXMPPConnection;
+@class Chat;
 
-@protocol IMServiceDelegate <NSObject>
-
-// xmpp 连接成功返回
-- (void)IMServiceDidConnect;
-// xmpp 认证成功后返回
-- (void)IMServiceDidAuthenticate;
-// xmpp 回收消息
-- (void)IMServicedidReceiveMessage:(NSString * )messageContent from:(NSString * )fromName;
-
-@end
+@interface IMService : SDXMPP
 
 
-@interface IMService : NSObject
-{
-   
-}
 
-@property (nonatomic, strong) id<IMServiceDelegate>delegate;
++ (id)initService;
 
-@property (nonatomic, readonly) XMPPStream *xmppStream;
+- (void)setupWithMyname:(NSString *)myname andMyPassword:(NSString *)passWord andMyHostname:(NSString *)hostName andPort:(UInt16)port;
 
-@property (nonatomic, readonly) XMPPReconnect *xmppReconnect;
-@property (nonatomic, readonly) XMPPRoster *xmppRoster;
-@property (nonatomic, readonly) XMPPRosterCoreDataStorage *xmppRosterStorage;
-@property (nonatomic, readonly) XMPPvCardTempModule *xmppvCardTempModule;
-@property (nonatomic, readonly) XMPPvCardAvatarModule *xmppvCardAvatarModule;
-@property (nonatomic, readonly) XMPPCapabilities *xmppCapabilities;
-@property (nonatomic, readonly) XMPPCapabilitiesCoreDataStorage *xmppCapabilitiesStorage;
+- (void)setXmppConnection:(AbstractXMPPConnection *)xmppConnection;
 
+- (void)setIMChat:(Chat *)IMChat;
 
-+ (IMService *)initIMService;
-
-- (void)setStreamHoatName:(NSString * )hostname andHostPort:(UInt16)newHostPort;
+- (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid;
 
 @end

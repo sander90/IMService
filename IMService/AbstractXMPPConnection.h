@@ -30,8 +30,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-
+@class IMService;
 @protocol XmppConnectionDelegate <NSObject>
 
 - (void)XMPPDidConnect;
