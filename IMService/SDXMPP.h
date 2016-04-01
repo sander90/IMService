@@ -48,6 +48,10 @@
  *  获取朋友的信息
  */
 - (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName;
+/**
+ * 成功发送信息给好友
+ */
+- (void)IMServicedidSendMessage:(NSString* )messageContent to:(NSString * )toName;
 
 
 #pragma mark - 功能
@@ -63,4 +67,7 @@
  * 发送信息给好友
  */
 - (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid;
+
+- (void)sendXMPPStreamElement:(NSXMLElement *)element;
+
 @end

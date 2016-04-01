@@ -119,6 +119,11 @@
     [messageElement addChild:body];
     [self.xmppStream sendElement:messageElement];
 }
+#pragma mark - 普通的发送协议信息
+- (void)sendXMPPStreamElement:(NSXMLElement *)element
+{
+    [self.xmppStream sendElement:element];
+}
 
 #pragma mark 服务
 
@@ -136,7 +141,10 @@
 {
     
 }
-
+- (void)IMServicedidSendMessage:(NSString *)messageContent to:(NSString *)toName
+{
+    
+}
 #pragma mark - XMPPStreamDelegate
 /**
  * This method is called before the stream begins the connection process.
@@ -373,7 +381,11 @@
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
 {
     [SDPrintLog printLog:@"" WithTag:@"didSendMessage"];
-    
+    NSString *body = [[message elementForName:@"body"] stringValue];
+    XMPPJID * fromjid = [message from];
+    NSString * fromeName = fromjid.user;
+    [SDPrintLog printLog:[NSString stringWithFormat:@"%@--->%@",fromeName,body] WithTag:@"didSendMessage"];
+    [self IMServicedidSendMessage:body to:fromeName];
 }
 - (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence
 {
