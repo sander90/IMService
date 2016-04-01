@@ -11,7 +11,10 @@
 #import "IMService.h"
 
 @protocol ChatDelegate <NSObject>
+@optional
 - (void)XMPPdidReceiveMessage:(NSString * )message withFriendName:(NSString * )user;
+@optional
+- (void)XMPPdidSendMessage:(NSString* )message;
 @end
 
 @interface Chat : NSObject

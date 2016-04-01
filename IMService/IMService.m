@@ -52,10 +52,13 @@
 {
     [super sendMessage:message toFriendJID:friendJid];
 }
+
+#pragma mark - 设置connectXMPP
 - (void)setXmppConnection:(AbstractXMPPConnection *)xmppConnection
 {
     _xmppConnection = xmppConnection;
 }
+#pragma mark - 设置Chat
 - (void)setIMChat:(Chat *)IMChat
 {
     _iMChat = IMChat;
@@ -84,10 +87,20 @@
  */
 - (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
 {
+    // 这个是对于专属的chat通知。
     if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
         if ([fromName isEqualToString:self.iMChat.FriendJID.user]) {
             [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
+        }else{
+            // 不是当前聊天对象来了通知怎么办
         }
+    }
+}
+
+- (void)IMServicedidSendMessage:(NSString *)messageContent to:(NSString *)toName
+{
+    if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidSendMessage:)]) {
+        [self.iMChat.delegate XMPPdidSendMessage:messageContent];
     }
 }
 @end
