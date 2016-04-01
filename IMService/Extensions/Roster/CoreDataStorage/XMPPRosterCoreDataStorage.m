@@ -63,7 +63,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (void)_clearAllResourcesForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertPrivateQueue();
 	
 	NSManagedObjectContext *moc = [self managedObjectContext];
@@ -147,7 +147,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 {
 	// This is a public method, so it may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	XMPPJID *myJID = stream.myJID;
 	if (myJID == nil)
@@ -163,7 +163,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 {
 	// This is a public method, so it may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	XMPPJID *myJID = stream.myJID;
 	if (myJID == nil)
@@ -180,7 +180,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 {
 	// This is a public method, so it may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (jid == nil) return nil;
 	if (moc == nil) return nil;
@@ -214,7 +214,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 {
 	// This is a public method, so it may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (jid == nil) return nil;
 	if (moc == nil) return nil;
@@ -248,7 +248,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (void)beginRosterPopulationForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		
@@ -290,7 +290,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (void)endRosterPopulationForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		
@@ -300,7 +300,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (void)handleRosterItem:(NSXMLElement *)itemSubElement xmppStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// Remember XML heirarchy memory management rules.
 	// The passed parameter is a subnode of the IQ, and we need to pass it to an asynchronous operation.
@@ -354,7 +354,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (void)handlePresence:(XMPPPresence *)presence xmppStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		
@@ -374,7 +374,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (BOOL)userExistsWithJID:(XMPPJID *)jid xmppStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = NO;
 	
@@ -395,7 +395,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 - (void)setPhoto:(NSImage *)photo forUserWithJID:(XMPPJID *)jid xmppStream:(XMPPStream *)stream
 #endif
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		
@@ -411,7 +411,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (void)clearAllResourcesForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		
@@ -421,7 +421,7 @@ static XMPPRosterCoreDataStorage *sharedInstance;
 
 - (void)clearAllUsersAndResourcesForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		

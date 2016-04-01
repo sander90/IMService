@@ -15,8 +15,7 @@
 #import "XMPPvCardAvatarModule.h"
 #import "XMPPvCardCoreDataStorage.h"
 #import "XMPPRosterMemoryStorage.h"
-#import "DDLog.h"
-#import "DDTTYLogger.h"
+//#import "DDLog.h"
 
 
 #import <CFNetwork/CFNetwork.h>

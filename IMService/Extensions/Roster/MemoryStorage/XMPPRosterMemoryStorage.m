@@ -632,7 +632,7 @@
 
 - (void)beginRosterPopulationForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	isRosterPopulation = YES;
@@ -646,7 +646,7 @@
 
 - (void)endRosterPopulationForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	isRosterPopulation = NO;
@@ -657,7 +657,7 @@
 
 - (void)handleRosterItem:(NSXMLElement *)item xmppStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	NSString *jidStr = [item attributeStringValueForName:@"jid"];
@@ -670,7 +670,7 @@
 		[roster setObject:newUser forKey:jid];
 		[newUser release];
 		
-		XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
+//		XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
 	}
 	else
 	{
@@ -683,7 +683,7 @@
 			{
 				[roster removeObjectForKey:jid];
 				
-				XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
+//				XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
 				
 				[[self multicastDelegate] xmppRoster:self didRemoveUser:user];
 				[[self multicastDelegate] xmppRosterDidChange:self];
@@ -696,7 +696,7 @@
 			{
 				[user updateWithItem:item];
 				
-				XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
+//				XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
 				
 				[[self multicastDelegate] xmppRoster:self didUpdateUser:user];
 				[[self multicastDelegate] xmppRosterDidChange:self];
@@ -708,7 +708,7 @@
 				[roster setObject:newUser forKey:jid];
 				[newUser autorelease];
 				
-				XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
+//				XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
 				
 				[[self multicastDelegate] xmppRoster:self didAddUser:newUser];
 				[[self multicastDelegate] xmppRosterDidChange:self];
@@ -719,7 +719,7 @@
 
 - (void)handlePresence:(XMPPPresence *)presence xmppStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	int change = XMPP_USER_NO_CHANGE;
@@ -746,7 +746,7 @@
 		}
 	}
 	
-	XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
+//	XMPPLogVerbose(@"roster(%lu): %@", (unsigned long)[roster count], roster);
 	
 	if (change == XMPP_USER_ADDED_RESOURCE)
 		[[self multicastDelegate] xmppRoster:self didAddResource:resource withUser:user];
@@ -763,7 +763,7 @@
 
 - (BOOL)userExistsWithJID:(XMPPJID *)jid xmppStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	XMPPJID *jidKey = [jid bareJID];
@@ -778,7 +778,7 @@
 - (void)setPhoto:(NSImage *)photo forUserWithJID:(XMPPJID *)jid xmppStream:(XMPPStream *)stream
 #endif
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	XMPPJID *jidKey = [jid bareJID];
@@ -792,7 +792,7 @@
 
 - (void)clearAllResourcesForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	for (XMPPUserMemoryStorage *user in [roster objectEnumerator])
@@ -805,7 +805,7 @@
 
 - (void)clearAllUsersAndResourcesForXMPPStream:(XMPPStream *)stream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	AssertParentQueue();
 	
 	[roster removeAllObjects];

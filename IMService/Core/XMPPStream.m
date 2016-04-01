@@ -751,7 +751,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	BOOL result = [asyncSocket connectToHost:host onPort:port error:errPtr];
 	
@@ -766,7 +766,7 @@ enum XMPPStreamConfig
 
 - (BOOL)connect:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = NO;
 	__block NSError *err = nil;
@@ -893,7 +893,7 @@ enum XMPPStreamConfig
 
 - (BOOL)oldSchoolSecureConnect:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = NO;
 	__block NSError *err = nil;
@@ -942,7 +942,7 @@ enum XMPPStreamConfig
 **/
 - (BOOL)connectTo:(XMPPJID *)jid withAddress:(NSData *)remoteAddr error:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = YES;
 	__block NSError *err = nil;
@@ -1034,7 +1034,7 @@ enum XMPPStreamConfig
 **/
 - (BOOL)connectP2PWithSocket:(GCDAsyncSocket *)acceptedSocket error:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = YES;
 	__block NSError *err = nil;
@@ -1134,7 +1134,7 @@ enum XMPPStreamConfig
 **/
 - (void)disconnect
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	dispatch_block_t block = ^{
 		
@@ -1173,7 +1173,7 @@ enum XMPPStreamConfig
 
 - (void)disconnectAfterSending
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	dispatch_block_t block = ^{
 		
@@ -1285,7 +1285,7 @@ enum XMPPStreamConfig
   
   NSData *outgoingData = [auth dataUsingEncoding:NSUTF8StringEncoding];
   
-  XMPPLogSend(@"SEND: %@", auth);
+//  XMPPLogSend(@"SEND: %@", auth);
   numberOfBytesSent += [outgoingData length];
   
   [asyncSocket writeData:outgoingData
@@ -1297,13 +1297,13 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	NSString *starttls = @"<starttls xmlns='urn:ietf:params:xml:ns:xmpp-tls'/>";
 	
 	NSData *outgoingData = [starttls dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", starttls);
+//	XMPPLogSend(@"SEND: %@", starttls);
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -1313,7 +1313,7 @@ enum XMPPStreamConfig
 
 - (BOOL)secureConnection:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = YES;
 	__block NSError *err = nil;
@@ -1420,7 +1420,7 @@ enum XMPPStreamConfig
 **/
 - (BOOL)registerWithPassword:(NSString *)password error:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = YES;
 	__block NSError *err = nil;
@@ -1483,7 +1483,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iqElement compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+//		XMPPLogSend(@"SEND: %@", outgoingStr);
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -1796,7 +1796,7 @@ enum XMPPStreamConfig
 **/
 - (BOOL)authenticateWithFacebookAccessToken:(NSString *)accessToken error:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = YES;
 	__block NSError *err = nil;
@@ -1850,7 +1850,7 @@ enum XMPPStreamConfig
 **/
 - (BOOL)authenticateWithPassword:(NSString *)password error:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = YES;
 	__block NSError *err = nil;
@@ -1927,7 +1927,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [auth compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+//			XMPPLogSend(@"SEND: %@", outgoingStr);
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -1978,7 +1978,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [iqElement compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+//			XMPPLogSend(@"SEND: %@", outgoingStr);
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -2012,7 +2012,7 @@ enum XMPPStreamConfig
 **/
 - (BOOL)authenticateAnonymously:(NSError **)errPtr
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result = YES;
 	__block NSError *err = nil;
@@ -2054,7 +2054,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [auth compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+//		XMPPLogSend(@"SEND: %@", outgoingStr);
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -2352,7 +2352,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [element compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+//		XMPPLogSend(@"SEND: %@", outgoingStr);
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -2509,7 +2509,7 @@ enum XMPPStreamConfig
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	NSAssert(![self didStartNegotiation], @"Invoked after initial negotiation has started");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// Initialize the XML stream
 	[self sendOpeningNegotiation];
@@ -2538,7 +2538,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ( ![self didStartNegotiation])
 	{
@@ -2547,7 +2547,7 @@ enum XMPPStreamConfig
 		
 		NSData *outgoingData = [s1 dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", s1);
+//		XMPPLogSend(@"SEND: %@", s1);
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -2559,7 +2559,7 @@ enum XMPPStreamConfig
 	
 	if (state != STATE_XMPP_CONNECTING)
 	{
-		XMPPLogVerbose(@"%@: Resetting parser...", THIS_FILE);
+//		XMPPLogVerbose(@"%@: Resetting parser...", THIS_FILE);
 		
 		// We're restarting our negotiation, so we need to reset the parser.
 		[parser setDelegate:nil];
@@ -2569,14 +2569,14 @@ enum XMPPStreamConfig
 	}
 	else if (parser == nil)
 	{
-		XMPPLogVerbose(@"%@: Initializing parser...", THIS_FILE);
+//		XMPPLogVerbose(@"%@: Initializing parser...", THIS_FILE);
 		
 		// Need to create parser (it was destroyed when the socket was last disconnected)
 		parser = [(XMPPParser *)[XMPPParser alloc] initWithDelegate:self];
 	}
 	else
 	{
-		XMPPLogVerbose(@"%@: Not touching parser...", THIS_FILE);
+//		XMPPLogVerbose(@"%@: Not touching parser...", THIS_FILE);
 	}
 	
 	NSString *xmlns = @"jabber:client";
@@ -2627,7 +2627,7 @@ enum XMPPStreamConfig
 	
 	NSData *outgoingData = [s2 dataUsingEncoding:NSUTF8StringEncoding];
 	
-	XMPPLogSend(@"SEND: %@", s2);
+//	XMPPLogSend(@"SEND: %@", s2);
 	numberOfBytesSent += [outgoingData length];
 	
 	[asyncSocket writeData:outgoingData
@@ -2645,7 +2645,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// Update state (part 2 - prompting delegates)
 	state = STATE_XMPP_STARTTLS_2;
@@ -2695,7 +2695,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace2(@"%@: %@ %@", THIS_FILE, THIS_METHOD, settings);
+//	XMPPLogTrace2(@"%@: %@ %@", THIS_FILE, THIS_METHOD, settings);
 	
 	if (state == STATE_XMPP_STARTTLS_2)
 	{
@@ -2744,7 +2744,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// Extract the stream features
 	NSXMLElement *features = [rootElement elementForName:@"stream:features"];
@@ -2802,7 +2802,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [iq compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+//			XMPPLogSend(@"SEND: %@", outgoingStr);
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -2822,7 +2822,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [iq compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+//			XMPPLogSend(@"SEND: %@", outgoingStr);
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -2850,7 +2850,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// We're expecting a proceed response
 	// If we get anything else we can safely assume it's the equivalent of a failure response
@@ -2875,7 +2875,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ([[response attributeStringValueForName:@"type"] isEqualToString:@"error"])
 	{
@@ -2907,7 +2907,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
   if ([self supportsDigestMD5Authentication] || isAccessToken)
 	{
@@ -2972,7 +2972,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [cr compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+//			XMPPLogSend(@"SEND: %@", outgoingStr);
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -3037,7 +3037,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ([[response name] isEqualToString:@"challenge"])
 	{
@@ -3065,7 +3065,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [cr compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+//			XMPPLogSend(@"SEND: %@", outgoingStr);
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -3101,7 +3101,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// We're expecting a success response
 	// If we get anything else we can safely assume it's the equivalent of a failure response
@@ -3126,7 +3126,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	NSXMLElement *r_bind = [response elementForName:@"bind" xmlns:@"urn:ietf:params:xml:ns:xmpp-bind"];
 	NSXMLElement *r_jid = [r_bind elementForName:@"jid"];
@@ -3158,7 +3158,7 @@ enum XMPPStreamConfig
 			NSString *outgoingStr = [iq compactXMLString];
 			NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 			
-			XMPPLogSend(@"SEND: %@", outgoingStr);
+//			XMPPLogSend(@"SEND: %@", outgoingStr);
 			numberOfBytesSent += [outgoingData length];
 			
 			[asyncSocket writeData:outgoingData
@@ -3190,7 +3190,7 @@ enum XMPPStreamConfig
 		NSString *outgoingStr = [iq compactXMLString];
 		NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 		
-		XMPPLogSend(@"SEND: %@", outgoingStr);
+//		XMPPLogSend(@"SEND: %@", outgoingStr);
 		numberOfBytesSent += [outgoingData length];
 		
 		[asyncSocket writeData:outgoingData
@@ -3205,7 +3205,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ([[response attributeStringValueForName:@"type"] isEqualToString:@"result"])
 	{
@@ -3231,7 +3231,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	NSError *connectError = nil;
 	BOOL success = NO;
@@ -3281,7 +3281,7 @@ enum XMPPStreamConfig
 	
 	if (sender != srvResolver) return;
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	srvResults = [records copy];
 	srvResultsIndex = 0;
@@ -3297,7 +3297,7 @@ enum XMPPStreamConfig
 	
 	if (sender != srvResolver) return;
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	state = STATE_XMPP_CONNECTING;
 	
@@ -3317,7 +3317,7 @@ enum XMPPStreamConfig
 	// 
 	// The TCP connection is now established.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	#if TARGET_OS_IPHONE
 	{
@@ -3329,10 +3329,10 @@ enum XMPPStreamConfig
 				result = [asyncSocket enableBackgroundingOnSocket];
 			}];
 			
-			if (result)
-				XMPPLogVerbose(@"%@: Enabled backgrounding on socket", THIS_FILE);
-			else
-				XMPPLogError(@"%@: Error enabling backgrounding on socket!", THIS_FILE);
+//			if (result)
+//				XMPPLogVerbose(@"%@: Enabled backgrounding on socket", THIS_FILE);
+//			else
+//				XMPPLogError(@"%@: Error enabling backgrounding on socket!", THIS_FILE);
 		}
 	}
 	#endif
@@ -3361,7 +3361,7 @@ enum XMPPStreamConfig
 {
 	// This method is invoked on the xmppQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[multicastDelegate xmppStreamDidSecure:self];
 }
@@ -3373,7 +3373,7 @@ enum XMPPStreamConfig
 {
 	// This method is invoked on the xmppQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	lastSendReceiveTime = [NSDate timeIntervalSinceReferenceDate];
 	
@@ -3381,7 +3381,7 @@ enum XMPPStreamConfig
 	{
 		NSString *dataAsStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		
-		XMPPLogRecvPre(@"RECV: %@", dataAsStr);
+//		XMPPLogRecvPre(@"RECV: %@", dataAsStr);
 		
 		[dataAsStr release];
 	}
@@ -3429,7 +3429,7 @@ enum XMPPStreamConfig
 {
 	// This method is invoked on the xmppQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	lastSendReceiveTime = [NSDate timeIntervalSinceReferenceDate];
 	
@@ -3437,7 +3437,7 @@ enum XMPPStreamConfig
 	{
 		if ([receipts count] == 0)
 		{
-			XMPPLogWarn(@"%@: Found TAG_XMPP_WRITE_RECEIPT with no pending receipts!", THIS_FILE);
+//			XMPPLogWarn(@"%@: Found TAG_XMPP_WRITE_RECEIPT with no pending receipts!", THIS_FILE);
 			return;
 		}
 		
@@ -3454,7 +3454,7 @@ enum XMPPStreamConfig
 {
 	// This method is invoked on the xmppQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (srvResults && (++srvResultsIndex < [srvResults count]))
 	{
@@ -3530,7 +3530,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == parserQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	dispatch_async(xmppQueue, ^{
 		
@@ -3538,7 +3538,7 @@ enum XMPPStreamConfig
 		
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-		XMPPLogRecvPost(@"RECV: %@", [root compactXMLString]);
+//		XMPPLogRecvPost(@"RECV: %@", [root compactXMLString]);
 		
 		// At this point we've sent our XML stream header, and we've received the response XML stream header.
 		// We save the root element of our stream for future reference.
@@ -3575,7 +3575,7 @@ enum XMPPStreamConfig
 				NSString *outgoingStr = [streamFeatures compactXMLString];
 				NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 				
-				XMPPLogSend(@"SEND: %@", outgoingStr);
+//				XMPPLogSend(@"SEND: %@", outgoingStr);
 				numberOfBytesSent += [outgoingData length];
 				
 				[asyncSocket writeData:outgoingData
@@ -3620,7 +3620,7 @@ enum XMPPStreamConfig
 				NSString *outgoingStr = [iq compactXMLString];
 				NSData *outgoingData = [outgoingStr dataUsingEncoding:NSUTF8StringEncoding];
 				
-				XMPPLogSend(@"SEND: %@", outgoingStr);
+//				XMPPLogSend(@"SEND: %@", outgoingStr);
 				numberOfBytesSent += [outgoingData length];
 				
 				[asyncSocket writeData:outgoingData
@@ -3639,7 +3639,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == parserQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	dispatch_async(xmppQueue, ^{
 		
@@ -3647,7 +3647,7 @@ enum XMPPStreamConfig
 		
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogRecvPost(@"RECV: %@", [element compactXMLString]);
+//		XMPPLogRecvPost(@"RECV: %@", [element compactXMLString]);
 		
 		NSString *elementName = [element name];
 		
@@ -3824,7 +3824,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == parserQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	dispatch_async(xmppQueue, ^{
 		
@@ -3842,7 +3842,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == parserQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	dispatch_async(xmppQueue, ^{
 		
@@ -3867,7 +3867,7 @@ enum XMPPStreamConfig
 {
 	NSAssert(dispatch_get_current_queue() == xmppQueue, @"Invoked on incorrect queue");
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (keepAliveTimer)
 	{
@@ -3890,7 +3890,7 @@ enum XMPPStreamConfig
 			dispatch_source_t theKeepAliveTimer = keepAliveTimer;
 			
 			dispatch_source_set_cancel_handler(keepAliveTimer, ^{
-				XMPPLogVerbose(@"dispatch_release(keepAliveTimer)");
+//				XMPPLogVerbose(@"dispatch_release(keepAliveTimer)");
 				dispatch_release(theKeepAliveTimer);
 			});
 			

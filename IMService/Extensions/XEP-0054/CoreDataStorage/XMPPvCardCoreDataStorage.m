@@ -88,7 +88,7 @@ static XMPPvCardCoreDataStorage *sharedInstance;
 	// This is a public method.
 	// It may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block NSData *result;
 	
@@ -109,7 +109,7 @@ static XMPPvCardCoreDataStorage *sharedInstance;
 	// This is a public method.
 	// It may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block NSString *result;
 	
@@ -130,7 +130,7 @@ static XMPPvCardCoreDataStorage *sharedInstance;
 	// This is a public method.
 	// It may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		
@@ -152,7 +152,7 @@ static XMPPvCardCoreDataStorage *sharedInstance;
 	// This is a public method.
 	// It may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block XMPPvCardTemp *result;
 	
@@ -173,7 +173,7 @@ static XMPPvCardCoreDataStorage *sharedInstance;
 	// This is a public method.
 	// It may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[self scheduleBlock:^{
 		
@@ -196,7 +196,7 @@ static XMPPvCardCoreDataStorage *sharedInstance;
 	// This is a public method.
 	// It may be invoked on any thread/queue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	__block BOOL result;
 	

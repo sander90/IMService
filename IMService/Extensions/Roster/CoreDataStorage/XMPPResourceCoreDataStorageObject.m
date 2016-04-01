@@ -140,7 +140,7 @@
 	
 	if (jid == nil)
 	{
-		XMPPLogWarn(@"%@: %@ - Invalid presence (missing or invalid jid): %@", [self class], THIS_METHOD, presence);
+//		XMPPLogWarn(@"%@: %@ - Invalid presence (missing or invalid jid): %@", [self class], THIS_METHOD, presence);
 		return nil;
 	}
 	
@@ -161,7 +161,7 @@
 	
 	if (jid == nil)
 	{
-		XMPPLogWarn(@"%@: %@ - Invalid presence (missing or invalid jid): %@", [self class], THIS_METHOD, presence);
+//		XMPPLogWarn(@"%@: %@ - Invalid presence (missing or invalid jid): %@", [self class], THIS_METHOD, presence);
 		return;
 	}
 	

@@ -61,7 +61,7 @@ enum XMPPRosterFlags
 		}
 		else
 		{
-			XMPPLogError(@"%@: %@ - Unable to configure storage!", THIS_FILE, THIS_METHOD);
+//			XMPPLogError(@"%@: %@ - Unable to configure storage!", THIS_FILE, THIS_METHOD);
 		}
 		
 		config = kAutoFetchRoster | kAutoAcceptKnownPresenceSubscriptionRequests;
@@ -74,11 +74,11 @@ enum XMPPRosterFlags
 
 - (BOOL)activate:(XMPPStream *)aXmppStream
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ([super activate:aXmppStream])
 	{
-		XMPPLogVerbose(@"%@: Activated", THIS_FILE);
+//		XMPPLogVerbose(@"%@: Activated", THIS_FILE);
 		
 		#ifdef _XMPP_VCARD_AVATAR_MODULE_H
 		[xmppStream autoAddDelegate:self delegateQueue:moduleQueue toModulesOfClass:[XMPPvCardAvatarModule class]];
@@ -92,7 +92,7 @@ enum XMPPRosterFlags
 
 - (void)deactivate
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	#ifdef _XMPP_VCARD_AVATAR_MODULE_H
 	[xmppStream removeAutoDelegate:self delegateQueue:moduleQueue fromModulesOfClass:[XMPPvCardAvatarModule class]];
@@ -293,7 +293,7 @@ enum XMPPRosterFlags
 		// E.g. If you sign in with robbiehanson@deusty.com/home you'll automatically
 		//    receive presence from robbiehanson@deusty.com/work
 		
-		XMPPLogInfo(@"%@: %@ - Ignoring request to add myself to my own roster", [self class], THIS_METHOD);
+//		XMPPLogInfo(@"%@: %@ - Ignoring request to add myself to my own roster", [self class], THIS_METHOD);
 		return;
 	}
 	
@@ -363,7 +363,7 @@ enum XMPPRosterFlags
 	
 	if ([myJID isEqualToJID:jid options:XMPPJIDCompareBare])
 	{
-		XMPPLogInfo(@"%@: %@ - Ignoring request to unsubscribe presence from myself", [self class], THIS_METHOD);
+//		XMPPLogInfo(@"%@: %@ - Ignoring request to unsubscribe presence from myself", [self class], THIS_METHOD);
 		return;
 	}
 	
@@ -383,7 +383,7 @@ enum XMPPRosterFlags
 	
 	if ([myJID isEqualToJID:jid options:XMPPJIDCompareBare])
 	{
-		XMPPLogInfo(@"%@: %@ - Ignoring request to revoke presence from myself", [self class], THIS_METHOD);
+//		XMPPLogInfo(@"%@: %@ - Ignoring request to revoke presence from myself", [self class], THIS_METHOD);
 		return;
 	}
 	
@@ -403,7 +403,7 @@ enum XMPPRosterFlags
 	
 	if ([myJID isEqualToJID:jid options:XMPPJIDCompareBare])
 	{
-		XMPPLogInfo(@"%@: %@ - Ignoring request to remove myself from my own roster", [self class], THIS_METHOD);
+//		XMPPLogInfo(@"%@: %@ - Ignoring request to remove myself from my own roster", [self class], THIS_METHOD);
 		return;
 	}
 	
@@ -507,7 +507,7 @@ enum XMPPRosterFlags
 {
 	// This method is invoked on the moduleQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if ([self autoFetchRoster])
 	{
@@ -519,7 +519,7 @@ enum XMPPRosterFlags
 {
 	// This method is invoked on the moduleQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// Note: Some jabber servers send an iq element with an xmlns.
 	// Because of the bug in Apple's NSXML (documented in our elementForName method),
@@ -574,7 +574,7 @@ enum XMPPRosterFlags
 {
 	// This method is invoked on the moduleQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (![self hasRoster])
 	{
@@ -637,7 +637,7 @@ enum XMPPRosterFlags
 {
 	// This method is invoked on the moduleQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	// We check the toStr, so we don't dump the resources when a user leaves a MUC room.
 	
@@ -661,7 +661,7 @@ enum XMPPRosterFlags
 {
 	// This method is invoked on the moduleQueue.
 	
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	[xmppRosterStorage clearAllUsersAndResourcesForXMPPStream:xmppStream];
 	

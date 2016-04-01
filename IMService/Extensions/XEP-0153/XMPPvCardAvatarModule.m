@@ -145,8 +145,8 @@ NSString *const kXMPPvCardAvatarPhotoElement = @"photo";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)xmppStreamWillConnect:(XMPPStream *)sender {
-	XMPPLogTrace();
-	/* 
+//	XMPPLogTrace();
+	/*
 	 * XEP-0153 Section 4.2 rule 1
 	 *
 	 * A client MUST NOT advertise an avatar image without first downloading the current vCard. 
@@ -157,13 +157,13 @@ NSString *const kXMPPvCardAvatarPhotoElement = @"photo";
 
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	[_xmppvCardTempModule fetchvCardTempForJID:[sender myJID] useCache:NO];
 }
 
 
 - (void)xmppStream:(XMPPStream *)sender willSendPresence:(XMPPPresence *)presence {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 
 	// add our photo info to the presence stanza
 	NSXMLElement *photoElement = nil;
@@ -185,7 +185,7 @@ NSString *const kXMPPvCardAvatarPhotoElement = @"photo";
 
 
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence  {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 
 	NSXMLElement *xElement = [presence elementForName:kXMPPvCardAvatarElement xmlns:kXMPPvCardAvatarNS];
 
@@ -215,7 +215,7 @@ NSString *const kXMPPvCardAvatarPhotoElement = @"photo";
         didReceivevCardTemp:(XMPPvCardTemp *)vCardTemp 
                      forJID:(XMPPJID *)jid
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (vCardTemp.photo != nil)
 	{

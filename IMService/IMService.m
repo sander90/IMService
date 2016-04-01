@@ -79,4 +79,15 @@
         [self.xmppConnection.delegate XMPPNotConnect];
     }
 }
+/**
+ * 从某一个好友中获取信息。
+ */
+- (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
+{
+    if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
+        if ([fromName isEqualToString:self.iMChat.FriendJID.user]) {
+            [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
+        }
+    }
+}
 @end

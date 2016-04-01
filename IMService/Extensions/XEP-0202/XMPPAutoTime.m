@@ -230,8 +230,8 @@
 
 - (void)systemClockDidChange:(NSNotification *)notification
 {
-	XMPPLogTrace();
-	XMPPLogVerbose(@"NSSystemClockDidChangeNotification: %@", notification);
+//	XMPPLogTrace();
+//	XMPPLogVerbose(@"NSSystemClockDidChangeNotification: %@", notification);
 	
 	if (lastCalibrationTime == DISPATCH_TIME_FOREVER)
 	{
@@ -287,7 +287,7 @@
 
 - (void)handleRecalibrationTimerFire
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (awaitingQueryResponse) return;
 	
@@ -301,7 +301,7 @@
 
 - (void)updateRecalibrationTimer
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	NSAssert(recalibrationTimer != NULL, @"Broken logic (1)");
 	NSAssert(recalibrationInterval > 0, @"Broken logic (2)");
@@ -320,7 +320,7 @@
 
 - (void)startRecalibrationTimer
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (recalibrationInterval <= 0)
 	{
@@ -354,7 +354,7 @@
 
 - (void)stopRecalibrationTimer
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	if (recalibrationTimer)
 	{
@@ -369,7 +369,7 @@
 
 - (void)xmppTime:(XMPPTime *)sender didReceiveResponse:(XMPPIQ *)iq withRTT:(NSTimeInterval)rtt
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	awaitingQueryResponse = NO;
 	
@@ -381,7 +381,7 @@
 
 - (void)xmppTime:(XMPPTime *)sender didNotReceiveResponse:(NSString *)queryID dueToTimeout:(NSTimeInterval)timeout
 {
-	XMPPLogTrace();
+//	XMPPLogTrace();
 	
 	awaitingQueryResponse = NO;
 	
@@ -402,7 +402,7 @@
 	}
 	else if (![lastServerAddress isEqualToData:currentServerAddress])
 	{
-		XMPPLogInfo(@"%@: Connected to a different server. Resetting calibration info.", [self class]);
+//		XMPPLogInfo(@"%@: Connected to a different server. Resetting calibration info.", [self class]);
 		
 		lastCalibrationTime = DISPATCH_TIME_FOREVER;
 		timeDifference = 0.0;

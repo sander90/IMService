@@ -156,21 +156,21 @@ static NSMutableSet *databaseFileNames;
     // you may want to delete the database file if it already exists on disk.
     
 #if TARGET_OS_IPHONE
-    XMPPLogError(@"%@:\n"
-                 @"=====================================================================================\n"
-                 @"Error creating persistent store:\n%@\n"
-                 @"Chaned core data model recently?\n"
-                 @"Quick Fix: Delete the app from device and reinstall.\n"
-                 @"=====================================================================================",
-                 [self class], error);
+//    XMPPLogError(@"%@:\n"
+//                 @"=====================================================================================\n"
+//                 @"Error creating persistent store:\n%@\n"
+//                 @"Chaned core data model recently?\n"
+//                 @"Quick Fix: Delete the app from device and reinstall.\n"
+//                 @"=====================================================================================",
+//                 [self class], error);
 #else
-    XMPPLogError(@"%@:\n"
-                 @"=====================================================================================\n"
-                 @"Error creating persistent store:\n%@\n"
-                 @"Chaned core data model recently?\n"
-                 @"Quick Fix: Delete the database: %@\n"
-                 @"=====================================================================================",
-                 [self class], error, storePath);
+//    XMPPLogError(@"%@:\n"
+//                 @"=====================================================================================\n"
+//                 @"Error creating persistent store:\n%@\n"
+//                 @"Chaned core data model recently?\n"
+//                 @"Quick Fix: Delete the database: %@\n"
+//                 @"=====================================================================================",
+//                 [self class], error, storePath);
 #endif
 
 }
@@ -406,7 +406,7 @@ static NSMutableSet *databaseFileNames;
 		
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogVerbose(@"%@: Creating managedObjectModel", [self class]);
+//		XMPPLogVerbose(@"%@: Creating managedObjectModel", [self class]);
 		
 		NSString *momName = [self managedObjectModelName];
 		
@@ -427,7 +427,7 @@ static NSMutableSet *databaseFileNames;
 		}
 		else
 		{
-			XMPPLogWarn(@"%@: Couldn't find managedObjectModel file - %@", [self class], momName);
+//			XMPPLogWarn(@"%@: Couldn't find managedObjectModel file - %@", [self class], momName);
 		}
 		
 		[pool drain];
@@ -461,7 +461,7 @@ static NSMutableSet *databaseFileNames;
 		
 		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 		
-		XMPPLogVerbose(@"%@: Creating persistentStoreCoordinator", [self class]);
+//		XMPPLogVerbose(@"%@: Creating persistentStoreCoordinator", [self class]);
 		
 		persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
 		
@@ -485,7 +485,7 @@ static NSMutableSet *databaseFileNames;
 			}
 			else
 			{
-				XMPPLogWarn(@"%@: Error creating persistentStoreCoordinator - Nil persistentStoreDirectory", [self class]);
+//				XMPPLogWarn(@"%@: Error creating persistentStoreCoordinator - Nil persistentStoreDirectory", [self class]);
 			}
 		}
 		else
@@ -543,7 +543,7 @@ static NSMutableSet *databaseFileNames;
 	NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
 	if (coordinator)
 	{
-		XMPPLogVerbose(@"%@: Creating managedObjectContext", [self class]);
+//		XMPPLogVerbose(@"%@: Creating managedObjectContext", [self class]);
 		
 		managedObjectContext = [[NSManagedObjectContext alloc] init];
 		[managedObjectContext setPersistentStoreCoordinator:coordinator];
@@ -580,7 +580,7 @@ static NSMutableSet *databaseFileNames;
 	NSError *error = nil;
 	if (![[self managedObjectContext] save:&error])
 	{
-		XMPPLogWarn(@"%@: Error saving - %@ %@", [self class], error, [error userInfo]);
+//		XMPPLogWarn(@"%@: Error saving - %@ %@", [self class], error, [error userInfo]);
 		
 		[[self managedObjectContext] rollback];
 	}
@@ -595,7 +595,7 @@ static NSMutableSet *databaseFileNames;
 	{
 		if (currentPendingRequests == 0)
 		{
-			XMPPLogVerbose(@"%@: Triggering save (pendingRequests=%i)", [self class], currentPendingRequests);
+//			XMPPLogVerbose(@"%@: Triggering save (pendingRequests=%i)", [self class], currentPendingRequests);
 			
 			[self save];
 		}
@@ -604,7 +604,7 @@ static NSMutableSet *databaseFileNames;
 			NSUInteger unsavedCount = [self numberOfUnsavedChanges];
 			if (unsavedCount >= saveThreshold)
 			{
-				XMPPLogVerbose(@"%@: Triggering save (unsavedCount=%lu)", [self class], (unsigned long)unsavedCount);
+//				XMPPLogVerbose(@"%@: Triggering save (unsavedCount=%lu)", [self class], (unsigned long)unsavedCount);
 				
 				[self save];
 			}

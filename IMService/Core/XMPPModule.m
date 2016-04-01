@@ -72,8 +72,8 @@
 		// 7. Thread C: The delegate method attempts to run on our module, which is deallocated,
 		//              the application crashes, the computer blows up, and a meteor hits your favorite restaurant.
 		
-		XMPPLogWarn(@"%@: Deallocating activated module. You should deactivate modules before their final release.",
-		              NSStringFromClass([self class]));
+//		XMPPLogWarn(@"%@: Deallocating activated module. You should deactivate modules before their final release.",
+//		              NSStringFromClass([self class]));
 		
 		[self deactivate];
 	}

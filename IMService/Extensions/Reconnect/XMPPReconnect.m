@@ -395,7 +395,7 @@ static void ReachabilityChanged(SCNetworkReachabilityRef target, SCNetworkReacha
 		dispatch_source_t theReconnectTimer = reconnectTimer;
 		
 		dispatch_source_set_cancel_handler(reconnectTimer, ^{
-			XMPPLogVerbose(@"dispatch_release(reconnectTimer)");
+//			XMPPLogVerbose(@"dispatch_release(reconnectTimer)");
 			dispatch_release(theReconnectTimer);
 		});
 		
@@ -453,7 +453,7 @@ static void ReachabilityChanged(SCNetworkReachabilityRef target, SCNetworkReacha
 			}
 			else
 			{
-				XMPPLogWarn(@"%@: %@ - No xmpp run loop available!", THIS_FILE, THIS_METHOD);
+//				XMPPLogWarn(@"%@: %@ - No xmpp run loop available!", THIS_FILE, THIS_METHOD);
 			}
 		}
 	}
@@ -472,7 +472,7 @@ static void ReachabilityChanged(SCNetworkReachabilityRef target, SCNetworkReacha
 		}
 		else
 		{
-			XMPPLogWarn(@"%@: %@ - No xmpp run loop available!", THIS_FILE, THIS_METHOD);
+//			XMPPLogWarn(@"%@: %@ - No xmpp run loop available!", THIS_FILE, THIS_METHOD);
 		}
 		
 		SCNetworkReachabilitySetCallback(reachability, NULL, NULL);
