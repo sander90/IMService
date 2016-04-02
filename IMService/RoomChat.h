@@ -17,4 +17,8 @@
  * 发现房间
  */
 - (void)fetchRoomChat;
+/**
+ * 创建保留房间
+ */
+- (void)createRetentionRoom;
 @end

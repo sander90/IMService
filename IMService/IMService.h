@@ -12,6 +12,9 @@
 
 @protocol IMServiceDelegate <NSObject>
 @optional
+/**
+ * 作为外部的信息获取，排除掉当前正在聊天的对象
+ */
 - (void)IMServiceDidReviceAllChatMessage:(NSString *)message from:(NSString* )fromName;
 
 @end

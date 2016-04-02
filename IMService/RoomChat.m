@@ -32,4 +32,9 @@
     IMService * im = [IMService initService];
     [im fetchRoomChatList];
 }
+
+- (void)createRetentionRoom
+{
+    
+}
 @end
