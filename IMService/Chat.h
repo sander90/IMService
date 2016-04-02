@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "IMService.h"
+@class IMService;
 
 @protocol ChatDelegate <NSObject>
 @optional
@@ -21,7 +21,8 @@
 
 @property (nonatomic, strong) id <ChatDelegate>delegate;
 
-@property(nonatomic,strong,readonly) XMPPJID * FriendJID;
+@property (nonatomic, strong,readonly) NSString* friendname;
+
 
 - (void)sendMessage:(NSString * )message;
 - (id)initWithFriendName:(NSString * )frineName;

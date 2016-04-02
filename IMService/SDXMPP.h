@@ -11,6 +11,8 @@
 
 #import "XMPPFramework.h"
 
+#define presence_type @"subscribe"
+
 @interface SDXMPP : NSObject
 {
     
@@ -52,6 +54,18 @@
  * 成功发送信息给好友
  */
 - (void)IMServicedidSendMessage:(NSString* )messageContent to:(NSString * )toName;
+
+/*
+ * 这个是个请求
+ */
+- (void)IMservicedidReceiveIQ:(XMPPIQ *)iq;
+
+/**
+ * 乱七八糟的各种信息汇总
+ */
+- (void)IMServicedidReceivePresenceSubscriptionRequest:(XMPPPresence *)presence;
+
+- (void)IMServicedidReceivePresence:(XMPPPresence *)presence;
 
 
 #pragma mark - 功能

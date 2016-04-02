@@ -137,11 +137,28 @@
 {
     int a = 0;
 }
+#pragma mark - 获取聊天信息
 - (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
 {
     
 }
+#pragma mark - 发送聊天信息
 - (void)IMServicedidSendMessage:(NSString *)messageContent to:(NSString *)toName
+{
+    
+}
+#pragma mark - 获取订阅请求有关的信息
+- (void)IMServicedidReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+    
+}
+#pragma mark - 获取iq开头的信息
+- (void)IMservicedidReceiveIQ:(XMPPIQ *)iq
+{
+    
+}
+#pragma mark - 获取信息
+- (void)IMServicedidReceivePresence:(XMPPPresence *)presence
 {
     
 }
@@ -295,7 +312,8 @@
  **/
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
-    [SDPrintLog printLog:@"" WithTag:@"didReceiveIQ"];
+    [SDPrintLog printLog:iq.description WithTag:@"didReceiveIQ"];
+    [self IMservicedidReceiveIQ:iq];
     return YES;
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
@@ -333,7 +351,7 @@
 }
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
 {
-    [SDPrintLog printLog:@"" WithTag:@"didReceivePresence"];
+    [SDPrintLog printLog:presence.description WithTag:@"didReceivePresence"];
 }
 
 /**
@@ -452,10 +470,10 @@
 //{
 //    [SDPrintLog printLog:@"" WithTag:@"willUnregisterModule"];
 //}
-//为了收集好友的列表
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
-    [SDPrintLog printLog:@"" WithTag:@"didReceivePresenceSubscriptionRequest"];
+    [SDPrintLog printLog:presence.description WithTag:@"didReceivePresenceSubscriptionRequest"];
+    [self IMServicedidReceivePresenceSubscriptionRequest:presence];
 }
 
 @end
