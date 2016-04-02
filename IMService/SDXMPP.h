@@ -11,6 +11,8 @@
 
 #import "XMPPFramework.h"
 
+#define presence_type @"subscribe"
+
 @interface SDXMPP : NSObject
 {
     
@@ -62,6 +64,8 @@
  * 乱七八糟的各种信息汇总
  */
 - (void)IMServicedidReceivePresenceSubscriptionRequest:(XMPPPresence *)presence;
+
+- (void)IMServicedidReceivePresence:(XMPPPresence *)presence;
 
 
 #pragma mark - 功能

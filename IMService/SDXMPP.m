@@ -137,21 +137,28 @@
 {
     int a = 0;
 }
+#pragma mark - 获取聊天信息
 - (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
 {
     
 }
+#pragma mark - 发送聊天信息
 - (void)IMServicedidSendMessage:(NSString *)messageContent to:(NSString *)toName
 {
     
 }
-
+#pragma mark - 获取订阅请求有关的信息
 - (void)IMServicedidReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
     
 }
-
+#pragma mark - 获取iq开头的信息
 - (void)IMservicedidReceiveIQ:(XMPPIQ *)iq
+{
+    
+}
+#pragma mark - 获取信息
+- (void)IMServicedidReceivePresence:(XMPPPresence *)presence
 {
     
 }

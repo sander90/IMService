@@ -9,6 +9,7 @@
 #import "IMService.h"
 #import "AbstractXMPPConnection.h"
 #import "Chat.h"
+#import "SDXMPP.h"
 
 @interface IMService ()
 @property (nonatomic, strong)AbstractXMPPConnection * xmppConnection;
@@ -65,66 +66,108 @@
 }
 
 #pragma mark - 功能
-#pragma mark - 添加好友
+#pragma mark 添加好友
 - (void)addOneFriendWithFriendName:(NSString * )name
 {
     XMPPJID * friendJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",name,self.myHostName]];
     
     [self.xmppRoster addUser:friendJid withNickname:name];
 }
-#pragma mark - 同意添加好友
-- (void)agreeOneFriendRequestaddFriend:(XMPPIQ *)iq
+#pragma mark 同意添加好友
+- (void)agreeOneFriendRequestaddFriend:(NSString *)friendname
 {
-    XMPPJID * friendJid = iq.from;
+    XMPPJID * friendJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",friendname,self.myHostName]];
     [self.xmppRoster acceptPresenceSubscriptionRequestFrom:friendJid andAddToRoster:YES];
 }
+#pragma mark 拒绝添加好友的请求
+- (void)unagreeOneFriendRequestaddFriend:(NSString *)name
+{
+    XMPPJID * friendJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",name,self.myHostName]];
+    [self.xmppRoster rejectPresenceSubscriptionRequestFrom:friendJid];
+}
+
+#pragma mark 用户通过Disco查询聊天服务是否支持MUC
+- (void)CheckIMServiceIsSupportMUC
+{
+    NSXMLElement *iqElement = [NSXMLElement elementWithName:@"iq"];
+    [iqElement addAttributeWithName:@"to" stringValue:self.myHostName];
+    [iqElement addAttributeWithName:@"type" stringValue:@"get"];
+    NSXMLElement * queryElement = [NSXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/disco#info"];
+    [iqElement addChild:queryElement];
+    [self sendXMPPStreamElement:iqElement];
+}
+
+#pragma mark 查询房间
+- (void)fetchRoomChatList
+{
+    NSXMLElement *iqElement = [NSXMLElement elementWithName:@"iq"];
+    [iqElement addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"conference.%@",self.myHostName]];
+    [iqElement addAttributeWithName:@"type" stringValue:@"get"];
+    NSXMLElement * queryElement = [NSXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
+    [iqElement addChild:queryElement];
+    [self sendXMPPStreamElement:iqElement];
+}
+
 #pragma mark - 服务
-#pragma mark - 连接成功
+#pragma mark -
+#pragma mark  连接成功
 - (void)SDDidConnectXMPPStream:(XMPPStream * )sender
 {
     if (self.xmppConnection.delegate && [self.xmppConnection.delegate respondsToSelector:@selector(XMPPDidConnect)]) {
         [self.xmppConnection.delegate XMPPDidConnect];
     }
 }
-#pragma mark - 连接失败
+#pragma mark 连接失败
 - (void)SDFaildConnectXMPPStream:(XMPPStream * )sender andError:(NSXMLElement * )error
 {
     if (self.xmppConnection.delegate && [self.xmppConnection.delegate respondsToSelector:@selector(XMPPNotConnect)]) {
         [self.xmppConnection.delegate XMPPNotConnect];
     }
 }
-#pragma mark -  从某一个好友中获取信息。
+#pragma mark 从某一个好友中获取信息。
 - (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
 {
-    // 这个是对于专属的chat通知。
-    if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
-        if ([fromName isEqualToString:self.iMChat.FriendJID.user]) {
-            [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
-        }else{
-            // 不是当前聊天对象来了通知怎么办
-            
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidReviceAllChatMessage:from:)]) {
+        // 这个是对于专属的chat通知。
+        if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
+            if ([fromName isEqualToString:self.iMChat.friendname]) {
+                [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
+                return;
+            }
         }
+        //这个chat通知，剔除掉专属的通知。
+        [self.delegate IMServiceDidReviceAllChatMessage:messageContent from:fromName];
     }
+    
+    
 }
-#pragma mark - 请求发送信息
+#pragma mark 请求发送信息
 - (void)IMServicedidSendMessage:(NSString *)messageContent to:(NSString *)toName
 {
     if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidSendMessage:)]) {
         [self.iMChat.delegate XMPPdidSendMessage:messageContent];
     }
 }
+#pragma mark 获取iq 信息
 - (void)IMservicedidReceiveIQ:(XMPPIQ *)iq
 {
     if ([iq.type isEqualToString:@"set"]) {
-        [self agreeOneFriendRequestaddFriend:iq];
+        
     }else if ([iq.type isEqualToString:@"get"]){
         
     }
 }
 
-#pragma mark - 获取
+#pragma mark 获取订阅请求信息
 - (void)IMServicedidReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
-    
+    //[self agreeOneFriendRequestaddFriend:presence.from.user];
+//    [self unagreeOneFriendRequestaddFriend:presence.from.user];
+}
+#pragma mark 获取所有的信息
+- (void)IMServicedidReceivePresence:(XMPPPresence *)presence
+{
+    //暂不做处理，
 }
 @end

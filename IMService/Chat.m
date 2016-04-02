@@ -8,10 +8,11 @@
 
 #import "Chat.h"
 
+#import "IMService.h"
 
 @interface Chat ()
 
-
+@property(nonatomic,strong,readonly) XMPPJID * FriendJID;
 @end
 
 @implementation Chat
@@ -31,9 +32,9 @@
     self = [super init];
     if (self) {
         IMService * im = [IMService initService];
+        _friendname = frineName;
         NSString * jidName = [NSString stringWithFormat:@"%@@%@",frineName,im.myHostName];
         _FriendJID = [XMPPJID jidWithString:jidName];
-        
         [im setIMChat:self];
         
     }
