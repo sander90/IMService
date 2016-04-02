@@ -177,7 +177,7 @@
 		C59366E11C96F64700C16770 /* AbstractXMPPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C59366DF1C96F64700C16770 /* AbstractXMPPConnection.m */; };
 		C5F1CD191C9D4ED10003AF89 /* SDXMPP.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */; };
 		C5F1CD1A1C9D4ED10003AF89 /* SDXMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */; };
-		C5F1CD1D1C9D55CF0003AF89 /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD1B1C9D55CF0003AF89 /* IMService.h */; };
+		C5F1CD1D1C9D55CF0003AF89 /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD1B1C9D55CF0003AF89 /* IMService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5F1CD1E1C9D55CF0003AF89 /* IMService.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1CD1C1C9D55CF0003AF89 /* IMService.m */; };
 /* End PBXBuildFile section */
 

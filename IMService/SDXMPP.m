@@ -145,6 +145,16 @@
 {
     
 }
+
+- (void)IMServicedidReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+    
+}
+
+- (void)IMservicedidReceiveIQ:(XMPPIQ *)iq
+{
+    
+}
 #pragma mark - XMPPStreamDelegate
 /**
  * This method is called before the stream begins the connection process.
@@ -295,7 +305,8 @@
  **/
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
-    [SDPrintLog printLog:@"" WithTag:@"didReceiveIQ"];
+    [SDPrintLog printLog:iq.description WithTag:@"didReceiveIQ"];
+    [self IMservicedidReceiveIQ:iq];
     return YES;
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
@@ -333,7 +344,7 @@
 }
 - (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
 {
-    [SDPrintLog printLog:@"" WithTag:@"didReceivePresence"];
+    [SDPrintLog printLog:presence.description WithTag:@"didReceivePresence"];
 }
 
 /**
@@ -452,10 +463,10 @@
 //{
 //    [SDPrintLog printLog:@"" WithTag:@"willUnregisterModule"];
 //}
-//为了收集好友的列表
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
-    [SDPrintLog printLog:@"" WithTag:@"didReceivePresenceSubscriptionRequest"];
+    [SDPrintLog printLog:presence.description WithTag:@"didReceivePresenceSubscriptionRequest"];
+    [self IMServicedidReceivePresenceSubscriptionRequest:presence];
 }
 
 @end

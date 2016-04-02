@@ -15,8 +15,6 @@
 
 @interface IMService : SDXMPP
 
-
-
 + (id)initService;
 
 - (void)setupWithMyname:(NSString *)myname andMyPassword:(NSString *)passWord andMyHostname:(NSString *)hostName andPort:(UInt16)port;
@@ -25,6 +23,13 @@
 
 - (void)setIMChat:(Chat *)IMChat;
 
+/**
+ * 发送信息给friend
+ */
 - (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid;
+/**
+ * 添加一个好友
+ */
+- (void)addOneFriendWithFriendName:(NSString * )name;
 
 @end
