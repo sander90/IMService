@@ -107,6 +107,13 @@
     [iqElement addChild:queryElement];
     [self sendXMPPStreamElement:iqElement];
 }
+#pragma mark - 创建保留房间
+- (void)createRetentionRoom
+{
+  
+
+}
+
 
 #pragma mark - 服务
 #pragma mark -

@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "Chat.h"
+@class XMPPRoom;
 @interface RoomChat : Chat
+
+@property (nonatomic, strong)XMPPRoom * xmpproom;
 /**
  * 用户通过Disco查询聊天服务是否支持MUC
  */
@@ -20,5 +23,5 @@
 /**
  * 创建保留房间
  */
-- (void)createRetentionRoom;
+- (void)createRetentionRoomWithRoomname:(NSString * )roomName andnickName:(NSString * )nickName;
 @end

@@ -10,6 +10,9 @@
 
 #import "SDXMPP.h"
 
+// 用来请求数据 这里使用block
+typedef void(^FinishResult)(id data);
+
 @protocol IMServiceDelegate <NSObject>
 @optional
 /**
@@ -26,6 +29,8 @@
 @interface IMService : SDXMPP
 
 @property (nonatomic, strong)id <IMServiceDelegate> delegate;
+
+@property (nonatomic, assign) FinishResult finish;
 
 /**
  * 创建IMService单例
@@ -65,5 +70,9 @@
  * 发现房间
  */
 - (void)fetchRoomChatList;
+/**
+ * 创建保留房间
+ */
+- (void)createRetentionRoom;
 
 @end

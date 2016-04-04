@@ -452,7 +452,7 @@
  **/
 - (void)xmppStream:(XMPPStream *)sender willSendP2PFeatures:(NSXMLElement *)streamFeatures
 {
-    [SDPrintLog printLog:@"" WithTag:@"willSendP2PFeatures"];
+    [SDPrintLog printLog:streamFeatures.description WithTag:@"willSendP2PFeatures"];
 }
 
 /**

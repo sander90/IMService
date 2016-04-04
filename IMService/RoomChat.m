@@ -9,6 +9,13 @@
 #import "RoomChat.h"
 
 #import "IMService.h"
+#import "XMPPRoom.h"
+#import "SDPrintLog.h"
+
+@interface RoomChat ()<XMPPRoomDelegate>
+
+@end
+
 
 @implementation RoomChat
 
@@ -33,8 +40,38 @@
     [im fetchRoomChatList];
 }
 
-- (void)createRetentionRoom
+- (void)createRetentionRoomWithRoomname:(NSString * )roomName andnickName:(NSString * )nickName
 {
-    
+    IMService * im = [IMService initService];
+    NSString * roomFullname = [NSString stringWithFormat:@"%@@%@",roomName,im.myHostName];
+    self.xmpproom = [[XMPPRoom alloc] initWithRoomName:roomFullname nickName:nickName];
+    [self.xmpproom activate:im.xmppStream];
+    [self.xmpproom createOrJoinRoom];
+    [self.xmpproom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+}
+
+- (void)xmppRoomDidCreate:(XMPPRoom *)sender
+{
+    [SDPrintLog printLog:@"" WithTag:@"xmppRoomDidCreate"];
+}
+- (void)xmppRoomDidEnter:(XMPPRoom *)sender
+{
+    [SDPrintLog printLog:@"" WithTag:@"xmppRoomDidEnter"];
+
+}
+- (void)xmppRoomDidLeave:(XMPPRoom *)sender
+{
+    [SDPrintLog printLog:@"" WithTag:@"xmppRoomDidLeave"];
+
+}
+- (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromNick:(NSString *)nick
+{
+    [SDPrintLog printLog:@"" WithTag:@"didReceiveMessage"];
+
+}
+- (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants
+{
+    [SDPrintLog printLog:@"" WithTag:@"didChangeOccupants"];
+
 }
 @end
