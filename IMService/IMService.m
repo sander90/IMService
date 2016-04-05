@@ -163,6 +163,8 @@
         
     }else if ([iq.type isEqualToString:@"get"]){
         
+    }else if ([iq.type isEqualToString:@"result"]){
+        [self analysisReceviewIQByTypeisResult:iq];
     }
 }
 
@@ -176,5 +178,12 @@
 - (void)IMServicedidReceivePresence:(XMPPPresence *)presence
 {
     //暂不做处理，
+}
+
+
+- (void)analysisReceviewIQByTypeisResult:(XMPPIQ *)iq
+{
+    NSXMLElement *element = [iq elementForName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
+    NSArray * items = [element elementsForName:@"item"];
 }
 @end
