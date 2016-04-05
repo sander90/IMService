@@ -10,6 +10,7 @@
 #import "AbstractXMPPConnection.h"
 #import "Chat.h"
 #import "SDXMPP.h"
+#import "DDXML.h"
 
 @interface IMService ()
 @property (nonatomic, strong)AbstractXMPPConnection * xmppConnection;
@@ -98,7 +99,7 @@
 }
 
 #pragma mark 查询房间
-- (void)fetchRoomChatList
+- (void)fetchRoomChatListWithFinishReslut:(FinishResult)finish
 {
     NSXMLElement *iqElement = [NSXMLElement elementWithName:@"iq"];
     [iqElement addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"conference.%@",self.myHostName]];
@@ -106,6 +107,8 @@
     NSXMLElement * queryElement = [NSXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
     [iqElement addChild:queryElement];
     [self sendXMPPStreamElement:iqElement];
+    
+    self.finish = finish;
 }
 #pragma mark - 创建保留房间
 - (void)createRetentionRoom
@@ -113,7 +116,15 @@
   
 
 }
-
+- (void)getConfigurationInformationForallWithRoom:(NSString*)roomName
+{
+    NSXMLElement * iqElement = [[NSXMLElement alloc] initWithName:@"iq"];
+    [iqElement addAttributeWithName:@"to" stringValue:[NSString stringWithFormat:@"%@@conference.%@",roomName,self.myHostName]];
+    [iqElement addAttributeWithName:@"type" stringValue:@"get"];
+    NSXMLElement * queryElement = [[NSXMLElement alloc] initWithName:@"query" xmlns:@"http://jabber.org/protocol/muc#owner"];
+    [iqElement addChild:queryElement];
+    [self sendXMPPStreamElement:iqElement];
+}
 
 #pragma mark - 服务
 #pragma mark -
@@ -184,6 +195,22 @@
 - (void)analysisReceviewIQByTypeisResult:(XMPPIQ *)iq
 {
     NSXMLElement *element = [iq elementForName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
+    if (element) {
+        [self ReceviewIQForqueryItems:element];
+    }
+}
+
+- (void)ReceviewIQForqueryItems:(NSXMLElement *)element
+{
     NSArray * items = [element elementsForName:@"item"];
+   __block NSMutableArray * rooms = [NSMutableArray array];
+    [items enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSXMLElement * item = obj;
+        NSString * roomname = [item attributeStringValueForName:@"name"];
+        [rooms addObject:roomname];
+    }];
+    if (self.finish) {
+        self.finish(rooms);
+    }
 }
 @end

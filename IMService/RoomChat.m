@@ -36,19 +36,33 @@
 #pragma mark - 发现房间
 - (void)fetchRoomChat
 {
-    IMService * im = [IMService initService];
-    [im fetchRoomChatList];
+//    IMService * im = [IMService initService];
+//    [im fetchRoomChatList];
 }
 
 - (void)createRetentionRoomWithRoomname:(NSString * )roomName andnickName:(NSString * )nickName
 {
+    
+    _roomname = roomName;
+    _nickname = nickName;
     IMService * im = [IMService initService];
-    NSString * roomFullname = [NSString stringWithFormat:@"%@@%@",roomName,im.myHostName];
+    NSString * roomFullname = [NSString stringWithFormat:@"%@@conference.%@",roomName,im.myHostName];
     self.xmpproom = [[XMPPRoom alloc] initWithRoomName:roomFullname nickName:nickName];
     [self.xmpproom activate:im.xmppStream];
     [self.xmpproom createOrJoinRoom];
+//    [self.xmpproom joinRoom];
     [self.xmpproom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
+//    NSXMLElement * presencexmlElement = [[NSXMLElement alloc] initWithName:@""]
 }
+
+- (void)getChatRoomConfigurationInformation
+{
+    IMService * im  =[IMService initService];
+    [im getConfigurationInformationForallWithRoom:self.roomname];
+}
+
+
 
 - (void)xmppRoomDidCreate:(XMPPRoom *)sender
 {
@@ -71,7 +85,7 @@
 }
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants
 {
-    [SDPrintLog printLog:@"" WithTag:@"didChangeOccupants"];
+    [SDPrintLog printLog:occupants.description WithTag:@"didChangeOccupants"];
 
 }
 @end

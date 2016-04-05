@@ -407,7 +407,7 @@
 }
 - (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence
 {
-    [SDPrintLog printLog:@"" WithTag:@"didSendPresence"];
+    [SDPrintLog printLog:presence.description WithTag:@"didSendPresence"];
 }
 
 /**

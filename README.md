@@ -1,4 +1,7 @@
 #IMService
+
+基于[XMPPFramework](https://github.com/robbiehanson/XMPPFramework)基础，
+
 **添加链接库**
 
 libresolv.tbd

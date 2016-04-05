@@ -69,10 +69,11 @@ typedef void(^FinishResult)(id data);
 /**
  * 发现房间
  */
-- (void)fetchRoomChatList;
+- (void)fetchRoomChatListWithFinishReslut:(FinishResult)finish;
 /**
  * 创建保留房间
  */
 - (void)createRetentionRoom;
 
+- (void)getConfigurationInformationForallWithRoom:(NSString*)roomName;
 @end
