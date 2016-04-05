@@ -62,6 +62,13 @@ typedef void(^FinishResult)(id data);
  * 拒绝 添加好友的请求
  */
 - (void)unagreeOneFriendRequestaddFriend:(NSString *)name;
+
+
+/**
+ * 搜寻关系是好友。
+ */
+- (void)queryRosterandResult:(FinishResult)finish;
+
 /**
  *  用户通过Disco查询聊天服务是否支持MUC
  */
@@ -73,7 +80,10 @@ typedef void(^FinishResult)(id data);
 /**
  * 创建保留房间
  */
-- (void)createRetentionRoom;
+- (void)createRetentionRoomWithroomname:(NSString * )roomName andNickname:(NSString * )nickname;
+
+
+
 
 - (void)getConfigurationInformationForallWithRoom:(NSString*)roomName;
 @end

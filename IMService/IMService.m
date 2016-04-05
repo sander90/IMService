@@ -67,6 +67,17 @@
 }
 
 #pragma mark - 功能
+#pragma mark - 获取好友列表
+- (void)queryRosterandResult:(FinishResult)finish
+{
+    NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:roster"];
+    NSXMLElement *iqElement = [NSXMLElement elementWithName:@"iq"];
+    [iqElement addAttributeWithName:@"from" stringValue:[self.myJID full]];
+    [iqElement addAttributeWithName:@"type" stringValue:@"get"];
+    [iqElement addChild:query];
+    [self sendXMPPStreamElement:iqElement];
+    self.finish = finish;
+}
 #pragma mark 添加好友
 - (void)addOneFriendWithFriendName:(NSString * )name
 {
@@ -111,9 +122,16 @@
     self.finish = finish;
 }
 #pragma mark - 创建保留房间
-- (void)createRetentionRoom
+- (void)createRetentionRoomWithroomname:(NSString * )roomName andNickname:(NSString * )nickname
 {
-  
+    NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
+    NSString *room = [roomName stringByAppendingString:[NSString stringWithFormat:@"conference.%@/%@",self.myHostName,nickname]];
+    [presence addAttributeWithName:@"to" stringValue:room];
+    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"http://jabber.org/protocol/muc"];
+    NSXMLElement *history = [NSXMLElement elementWithName:@"history"];
+    [history addAttributeWithName:@"maxstanzas" stringValue:@"50"];
+    [x addChild:history];
+    [presence addChild:x];
 
 }
 - (void)getConfigurationInformationForallWithRoom:(NSString*)roomName
@@ -191,15 +209,20 @@
     //暂不做处理，
 }
 
-
 - (void)analysisReceviewIQByTypeisResult:(XMPPIQ *)iq
 {
     NSXMLElement *element = [iq elementForName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
     if (element) {
         [self ReceviewIQForqueryItems:element];
     }
+    NSXMLElement * friendElement = [iq elementForName:@"query" xmlns:@"jabber:iq:roster"];
+    if (friendElement) {
+        [self ReceViewIQForqueryFriends:friendElement];
+    }
+    
 }
 
+#pragma mark - 获取全部房间
 - (void)ReceviewIQForqueryItems:(NSXMLElement *)element
 {
     NSArray * items = [element elementsForName:@"item"];
@@ -211,6 +234,18 @@
     }];
     if (self.finish) {
         self.finish(rooms);
+    }
+}
+- (void)ReceViewIQForqueryFriends:(NSXMLElement * )element{
+    NSArray * items = [element elementsForName:@"item"];
+    __block NSMutableArray * friendList = [NSMutableArray array];
+    [items enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSXMLElement * item = obj;
+        NSString * roomname = [item attributeStringValueForName:@"jid"];
+        [friendList addObject:roomname];
+    }];
+    if (self.finish) {
+        self.finish(friendList);
     }
 }
 @end

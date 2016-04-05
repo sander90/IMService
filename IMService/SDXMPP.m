@@ -89,6 +89,7 @@
 - (void)connect
 {
     XMPPJID * myjid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",self.myName,self.myHostName]];
+    _myJID = myjid;
     [self.xmppStream setMyJID:myjid];
     NSError * error;
     BOOL reslut = [self.xmppStream connect:&error];

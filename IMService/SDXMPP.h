@@ -32,6 +32,8 @@
 
 @property (nonatomic, assign) UInt16 myPort;
 
+@property (nonatomic, strong)XMPPJID * myJID;
+
 
 
 - (id)initWithMyname:(NSString * )myname andMyPassword:(NSString * )passWord andMyHostname:(NSString * )hostName andPort:(UInt16)port;
