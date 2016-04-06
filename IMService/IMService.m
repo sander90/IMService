@@ -208,7 +208,6 @@
 {
     //暂不做处理，
 }
-
 - (void)analysisReceviewIQByTypeisResult:(XMPPIQ *)iq
 {
     NSXMLElement *element = [iq elementForName:@"query" xmlns:@"http://jabber.org/protocol/disco#items"];
