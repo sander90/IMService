@@ -46,14 +46,17 @@
     _roomname = roomName;
     _nickname = nickName;
     IMService * im = [IMService initService];
+//    [im joinRoomWithRoomNiceName:roomName];
 //    [im createRetentionRoomWithroomname:roomName andNickname:nickName];
     NSString * roomFullname = [NSString stringWithFormat:@"%@@conference.%@",roomName,im.myHostName];
     self.xmpproom = [[XMPPRoom alloc] initWithRoomName:roomFullname nickName:nickName];
     [self.xmpproom activate:im.xmppStream];
     [self.xmpproom createOrJoinRoom];
-    [self.xmpproom inviteUser:im.myJID withMessage:@"请求"];
+//    [self.xmpproom inviteUser:im.myJID withMessage:@"请求"];
     [self.xmpproom addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
 }
+
 
 - (void)sendInstantRoomConfig
 {
@@ -65,8 +68,6 @@
     IMService * im  =[IMService initService];
     [im getConfigurationInformationForallWithRoom:self.roomname];
 }
-
-
 
 - (void)xmppRoomDidCreate:(XMPPRoom *)sender
 {
@@ -84,7 +85,7 @@
 }
 - (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromNick:(NSString *)nick
 {
-    [SDPrintLog printLog:@"" WithTag:@"didReceiveMessage"];
+    [SDPrintLog printLog:message.description WithTag:@"didReceiveMessage"];
 
 }
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants

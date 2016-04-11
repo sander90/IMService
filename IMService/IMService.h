@@ -82,8 +82,10 @@ typedef void(^FinishResult)(id data);
  */
 - (void)createRetentionRoomWithroomname:(NSString * )roomName andNickname:(NSString * )nickname;
 
-
-
+/**
+ * 加入房间
+ */
+- (void)joinRoomWithRoomNiceName:(NSString*)nicename;
 
 - (void)getConfigurationInformationForallWithRoom:(NSString*)roomName;
 @end

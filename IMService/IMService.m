@@ -121,18 +121,85 @@
     
     self.finish = finish;
 }
+#pragma mark - 加入房间
+- (void)joinRoomWithRoomNiceName:(NSString*)nicename
+{
+    NSString *room = [nicename stringByAppendingString:[NSString stringWithFormat:@"@conference.%@/%@",self.myHostName,@"sander"]];
+    NSXMLElement * presenceElement = [NSXMLElement elementWithName:@"presence"];
+    [presenceElement addAttributeWithName:@"to" stringValue:room];
+    NSXMLElement * xElement = [NSXMLElement elementWithName:@"x" xmlns:@"http://jabber.org/protocol/muc"];
+    [presenceElement addChild:xElement];
+    [self sendXMPPStreamElement:presenceElement];
+    
+}
 #pragma mark - 创建保留房间
 - (void)createRetentionRoomWithroomname:(NSString * )roomName andNickname:(NSString * )nickname
 {
-    NSXMLElement *presence = [NSXMLElement elementWithName:@"presence"];
+    NSXMLElement * iqElement = [NSXMLElement elementWithName:@"iq"];
     NSString *room = [roomName stringByAppendingString:[NSString stringWithFormat:@"conference.%@/%@",self.myHostName,nickname]];
-    [presence addAttributeWithName:@"to" stringValue:room];
-    NSXMLElement *x = [NSXMLElement elementWithName:@"x" xmlns:@"http://jabber.org/protocol/muc"];
-    NSXMLElement *history = [NSXMLElement elementWithName:@"history"];
-    [history addAttributeWithName:@"maxstanzas" stringValue:@"50"];
-    [x addChild:history];
-    [presence addChild:x];
-
+    [iqElement addAttributeWithName:@"to" stringValue:room];
+    [iqElement addAttributeWithName:@"type" stringValue:@"set"];
+    
+    NSXMLElement * queryElement = [NSXMLElement elementWithName:@"query" xmlns:@"http://jabber.org/protocol/muc#owner"];
+    NSXMLElement * xElement = [NSXMLElement elementWithName:@"x" xmlns:@"jabber:x:data"];
+    [xElement addAttributeWithName:@"type" stringValue:@"submit"];
+    NSXMLElement * field1 = [self createFieldElementWithVar:@"FORM_TYPE" value:@"http://jabber.org/protocol/muc#roomconfig"];
+    [xElement addChild:field1];
+    
+    NSXMLElement * field2 = [self createFieldElementWithVar:@"muc#roomconfig_roomname" value:@"A Dark Cave"];
+    [xElement addChild:field2];
+    
+    NSXMLElement * field3 = [self createFieldElementWithVar:@"muc#roomconfig_roomdesc" value:@"The place for all good witches!"];
+    [xElement addChild:field3];
+    
+    NSXMLElement * field4 = [self createFieldElementWithVar:@"muc#roomconfig_enablelogging" value:@"0"];
+    [xElement addChild:field4];
+    
+    NSXMLElement * field5 = [self createFieldElementWithVar:@"muc#roomconfig_changesubject" value:@"1"];
+    [xElement addChild:field5];
+    
+    NSXMLElement * field6 = [self createFieldElementWithVar:@"muc#roomconfig_allowinvites" value:@"0"];
+    [xElement addChild:field6];
+    
+    NSXMLElement * field7 = [self createFieldElementWithVar:@"muc#roomconfig_maxusers" value:@"10"];
+    [xElement addChild:field7];
+    
+    NSXMLElement * field8 = [self createFieldElementWithVar:@"muc#roomconfig_publicroom" value:@"0"];
+    [xElement addChild:field8];
+    
+    NSXMLElement * field9 = [self createFieldElementWithVar:@"muc#roomconfig_whois" value:@"moderators"];
+    [xElement addChild:field9];
+    
+    NSXMLElement * field10 = [self createFieldElementWithVar:@"muc#roomconfig_roomadmins" valueList:@[@"sander@117.158.46.13",@"sander1@117.158.46.13",@"truman@117.158.46.13"]];
+    [xElement addChild:field10];
+    
+    [queryElement addChild:xElement];
+    [iqElement addChild:queryElement];
+    
+    [self sendXMPPStreamElement:iqElement];
+    
+}
+- (NSXMLElement *)createFieldElementWithVar:(NSString * )var value:(NSString * )value
+{
+    NSXMLElement * fieldElement = [NSXMLElement elementWithName:@"field"];
+    [fieldElement addAttributeWithName:@"var" stringValue:var];
+    NSXMLNode * valueNode = [NSXMLNode elementWithName:@"value" stringValue:value];
+    [fieldElement addChild:valueNode];
+    return fieldElement;
+}
+- (NSXMLElement *)createFieldElementWithVar:(NSString * )var valueList:(NSArray * )values
+{
+    NSXMLElement * fieldElement = [NSXMLElement elementWithName:@"field"];
+    [fieldElement addAttributeWithName:@"var" stringValue:var];
+    
+    [values enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString* value = obj;
+        NSXMLNode * valueNode = [NSXMLNode elementWithName:@"value" stringValue:value];
+        [fieldElement addChild:valueNode];
+    }];
+    
+  
+    return fieldElement;
 }
 - (void)getConfigurationInformationForallWithRoom:(NSString*)roomName
 {
