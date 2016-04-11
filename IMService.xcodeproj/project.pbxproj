@@ -1168,6 +1168,7 @@
 					"$(PROJECT_DIR)/IMService/IDN",
 					"$(SRCROOT)/libidn",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lxml2",
