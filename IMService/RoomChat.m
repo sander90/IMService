@@ -57,7 +57,10 @@
     
 }
 
-
+- (void)sendRoomMessage:(NSString* )message
+{
+    [self.xmpproom sendMessage:message];
+}
 - (void)sendInstantRoomConfig
 {
     
@@ -85,7 +88,12 @@
 }
 - (void)xmppRoom:(XMPPRoom *)sender didReceiveMessage:(XMPPMessage *)message fromNick:(NSString *)nick
 {
-    [SDPrintLog printLog:message.description WithTag:@"didReceiveMessage"];
+//    [SDPrintLog printLog:message.description WithTag:@"didReceiveMessage"];
+    NSString *body = [[message elementForName:@"body"] stringValue];
+    XMPPJID * fromjid = [message from];
+    NSString * fromeName = fromjid.user;
+    NSString * receviceMessage = [NSString stringWithFormat:@"%@---%@",fromeName,body];
+    [SDPrintLog printLog:receviceMessage WithTag:@"didReceiveMessage"];
 
 }
 - (void)xmppRoom:(XMPPRoom *)sender didChangeOccupants:(NSDictionary *)occupants

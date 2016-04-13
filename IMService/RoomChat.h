@@ -30,4 +30,8 @@
 - (void)createRetentionRoomWithRoomname:(NSString * )roomName andnickName:(NSString * )nickName;
 
 - (void)getChatRoomConfigurationInformation;
+/**
+ * 发送
+ */
+- (void)sendRoomMessage:(NSString* )message;
 @end
