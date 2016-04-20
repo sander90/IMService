@@ -50,7 +50,7 @@
 //    [im createRetentionRoomWithroomname:roomName andNickname:nickName];
     NSString * roomFullname = [NSString stringWithFormat:@"%@@conference.%@",roomName,im.myHostName];
     self.xmpproom = [[XMPPRoom alloc] initWithRoomName:roomFullname nickName:nickName];
-    [self.xmpproom activate:im.xmppStream];
+    [self.xmpproom activate:[im getXMPPStream]];
     [self.xmpproom createOrJoinRoom];
 //    [self.xmpproom inviteUser:im.myJID withMessage:@"请求"];
     [self.xmpproom addDelegate:self delegateQueue:dispatch_get_main_queue()];

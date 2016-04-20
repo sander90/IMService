@@ -132,12 +132,12 @@
 		C503F2051C99582E00421865 /* stringprep.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F15F1C99582E00421865 /* stringprep.h */; };
 		C503F2061C99582E00421865 /* NSString+DDXML.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1621C99582E00421865 /* NSString+DDXML.h */; };
 		C503F2071C99582E00421865 /* NSString+DDXML.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F1631C99582E00421865 /* NSString+DDXML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C503F2081C99582E00421865 /* DDXML.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1641C99582E00421865 /* DDXML.h */; };
-		C503F2091C99582E00421865 /* DDXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1651C99582E00421865 /* DDXMLDocument.h */; };
+		C503F2081C99582E00421865 /* DDXML.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1641C99582E00421865 /* DDXML.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C503F2091C99582E00421865 /* DDXMLDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1651C99582E00421865 /* DDXMLDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C503F20A1C99582E00421865 /* DDXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F1661C99582E00421865 /* DDXMLDocument.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C503F20B1C99582E00421865 /* DDXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1671C99582E00421865 /* DDXMLElement.h */; };
+		C503F20B1C99582E00421865 /* DDXMLElement.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1671C99582E00421865 /* DDXMLElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C503F20C1C99582E00421865 /* DDXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F1681C99582E00421865 /* DDXMLElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		C503F20D1C99582E00421865 /* DDXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1691C99582E00421865 /* DDXMLNode.h */; };
+		C503F20D1C99582E00421865 /* DDXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1691C99582E00421865 /* DDXMLNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C503F20E1C99582E00421865 /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C503F16A1C99582E00421865 /* DDXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C503F20F1C99582E00421865 /* DDXMLPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F16C1C99582E00421865 /* DDXMLPrivate.h */; };
 		C503F2181C99582E00421865 /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F1771C99582E00421865 /* GCDAsyncSocket.h */; };
@@ -164,7 +164,7 @@
 		C503F2361C99672700421865 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2351C99672700421865 /* CoreGraphics.framework */; };
 		C503F2381C99673100421865 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2371C99673100421865 /* CoreLocation.framework */; };
 		C503F23A1C99673B00421865 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2391C99673B00421865 /* CFNetwork.framework */; };
-		C503F23C1C99684800421865 /* XMPPFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F23B1C99684800421865 /* XMPPFramework.h */; };
+		C503F23C1C99684800421865 /* XMPPFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = C503F23B1C99684800421865 /* XMPPFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C503F23E1C99692F00421865 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F23D1C99692F00421865 /* UIKit.framework */; };
 		C503F2441C99748B00421865 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2431C99748B00421865 /* libxml2.2.dylib */; };
 		C503F2461C9974AE00421865 /* libresolv.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C503F2451C9974AE00421865 /* libresolv.9.dylib */; };
@@ -1162,7 +1162,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IMService/IDN",
@@ -1187,7 +1187,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/IMService/IDN",

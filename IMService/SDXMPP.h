@@ -9,20 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#import "XMPPFramework.h"
-
 #define presence_type @"subscribe"
 
+#import "DDXML.h"
+
+@class XMPPStream;
+@class XMPPIQ;
+@class XMPPPresence;
+@class XMPPJID;
+@class XMPPRoster;
 @interface SDXMPP : NSObject
 {
     
 }
 
-@property (nonatomic, readonly) XMPPStream * xmppStream;
 
-@property (nonatomic, readonly) XMPPReconnect * xmppReconnect;
-
-@property (nonatomic, readonly) XMPPRoster * xmppRoster;
 
 @property (nonatomic, strong) NSString * myName;
 
@@ -32,7 +33,6 @@
 
 @property (nonatomic, assign) UInt16 myPort;
 
-@property (nonatomic, strong)XMPPJID * myJID;
 
 
 
@@ -85,5 +85,9 @@
 - (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid;
 
 - (void)sendXMPPStreamElement:(NSXMLElement *)element;
+
+- (XMPPStream * )getXMPPStream;
+- (XMPPRoster *)getXMPPRoster;
+- (XMPPJID *)getMyXMPPJID;
 
 @end

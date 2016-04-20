@@ -10,7 +10,9 @@
 #import "AbstractXMPPConnection.h"
 #import "Chat.h"
 #import "SDXMPP.h"
-#import "DDXML.h"
+#import "XMPPJID.h"
+#import "XMPPFramework.h"
+
 
 @interface IMService ()
 @property (nonatomic, strong)AbstractXMPPConnection * xmppConnection;
@@ -72,7 +74,7 @@
 {
     NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:roster"];
     NSXMLElement *iqElement = [NSXMLElement elementWithName:@"iq"];
-    [iqElement addAttributeWithName:@"from" stringValue:[self.myJID full]];
+    [iqElement addAttributeWithName:@"from" stringValue:[[self getMyXMPPJID] full]];
     [iqElement addAttributeWithName:@"type" stringValue:@"get"];
     [iqElement addChild:query];
     [self sendXMPPStreamElement:iqElement];
@@ -83,19 +85,19 @@
 {
     XMPPJID * friendJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",name,self.myHostName]];
     
-    [self.xmppRoster addUser:friendJid withNickname:name];
+    [[self getXMPPRoster] addUser:friendJid withNickname:name];
 }
 #pragma mark 同意添加好友
 - (void)agreeOneFriendRequestaddFriend:(NSString *)friendname
 {
     XMPPJID * friendJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",friendname,self.myHostName]];
-    [self.xmppRoster acceptPresenceSubscriptionRequestFrom:friendJid andAddToRoster:YES];
+    [[self getXMPPRoster] acceptPresenceSubscriptionRequestFrom:friendJid andAddToRoster:YES];
 }
 #pragma mark 拒绝添加好友的请求
 - (void)unagreeOneFriendRequestaddFriend:(NSString *)name
 {
     XMPPJID * friendJid = [XMPPJID jidWithString:[NSString stringWithFormat:@"%@@%@",name,self.myHostName]];
-    [self.xmppRoster rejectPresenceSubscriptionRequestFrom:friendJid];
+    [[self getXMPPRoster] rejectPresenceSubscriptionRequestFrom:friendJid];
 }
 
 #pragma mark 用户通过Disco查询聊天服务是否支持MUC
@@ -231,9 +233,12 @@
 - (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
 {
     
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidReviceAllChatMessage:from:)]) {
         // 这个是对于专属的chat通知。
+        NSLog(@"%@",self.iMChat.delegate);
         if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
+            NSLog(@"%@ == %@",fromName,self.iMChat.friendname);
             if ([fromName isEqualToString:self.iMChat.friendname]) {
                 [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
                 return;

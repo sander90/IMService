@@ -9,6 +9,7 @@
 #import "Chat.h"
 
 #import "IMService.h"
+#import "XMPPJID.h"
 
 @interface Chat ()
 
@@ -35,6 +36,7 @@
         _friendname = frineName;
         NSString * jidName = [NSString stringWithFormat:@"%@@%@",frineName,im.myHostName];
         _FriendJID = [XMPPJID jidWithString:jidName];
+        
         [im setIMChat:self];
         
     }
@@ -44,6 +46,11 @@
 {
     IMService * im = [IMService initService];
     [im sendMessage:message toFriendJID:self.FriendJID];
+}
+- (void)exitChat
+{
+    IMService * im = [IMService initService];
+    [im setIMChat:nil];
 }
 
 

@@ -16,17 +16,28 @@
 #import "XMPPvCardCoreDataStorage.h"
 #import "XMPPRosterMemoryStorage.h"
 //#import "DDLog.h"
+#import "XMPPFramework.h"
+#import "DDXML.h"
 
 
 #import <CFNetwork/CFNetwork.h>
 
 #import "SDPrintLog.h"
 
+#define SDAPIVERSION @"1.1"
+
 @interface SDXMPP ()<XMPPStreamDelegate,XMPPRosterDelegate>
 
 @property (nonatomic)  XMPPRosterMemoryStorage * xmppRosterMenoryStorage;
 
 //@property (nonatomic) XMPPMessage
+@property (nonatomic,strong, readonly) XMPPStream * xmppStream;
+
+@property (nonatomic, readonly) XMPPReconnect * xmppReconnect;
+
+@property (nonatomic, readonly) XMPPRoster * xmppRoster;
+
+@property (nonatomic, strong)XMPPJID * myJID;
 
 @end
 
@@ -36,6 +47,8 @@
 {
     self = [super init];
     if (self) {
+        [SDPrintLog printLog:SDAPIVERSION WithTag:@"version"];
+
         [self setupXmpp];
     }
     return self;
@@ -54,9 +67,23 @@
     return self;
    
 }
+
+- (XMPPStream * )getXMPPStream
+{
+    return self.xmppStream;
+}
+- (XMPPRoster*)getXMPPRoster
+{
+    return self.xmppRoster;
+}
+- (XMPPJID *)getMyXMPPJID
+{
+    return self.myJID;
+}
 #pragma mark - 初始化 xmpp
 - (void)setupXmpp
 {
+    
     
     _xmppStream = [[XMPPStream alloc] init];
     
@@ -476,5 +503,7 @@
     [SDPrintLog printLog:presence.description WithTag:@"didReceivePresenceSubscriptionRequest"];
     [self IMServicedidReceivePresenceSubscriptionRequest:presence];
 }
+
+
 
 @end

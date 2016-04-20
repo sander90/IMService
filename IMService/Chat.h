@@ -23,7 +23,10 @@
 
 @property (nonatomic, strong,readonly) NSString* friendname;
 
-
+//发送信息
 - (void)sendMessage:(NSString * )message;
+//初始化聊天室
 - (id)initWithFriendName:(NSString * )frineName;
+//离开聊天室
+- (void)exitChat;
 @end
