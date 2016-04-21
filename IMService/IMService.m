@@ -233,22 +233,20 @@
 - (void)IMServicedidReceiveMessage:(NSString *)messageContent from:(NSString *)fromName
 {
     
-    
     if (self.delegate && [self.delegate respondsToSelector:@selector(IMServiceDidReviceAllChatMessage:from:)]) {
         // 这个是对于专属的chat通知。
         NSLog(@"%@",self.iMChat.delegate);
         if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
             NSLog(@"%@ == %@",fromName,self.iMChat.friendname);
             if ([fromName isEqualToString:self.iMChat.friendname]) {
+                [self.chatManager saveChatContent:messageContent friengID:fromName chatID:fromName];
                 [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
                 return;
             }
         }
         //这个chat通知，剔除掉专属的通知。
         [self.delegate IMServiceDidReviceAllChatMessage:messageContent from:fromName];
-    }
-    
-    
+    }    
 }
 #pragma mark 请求发送信息
 - (void)IMServicedidSendMessage:(NSString *)messageContent to:(NSString *)toName

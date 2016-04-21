@@ -12,7 +12,7 @@
 #define presence_type @"subscribe"
 
 #import "DDXML.h"
-
+#import "ChatDBManager.h"
 @class XMPPStream;
 @class XMPPIQ;
 @class XMPPPresence;
@@ -32,6 +32,9 @@
 @property (nonatomic, strong) NSString * myHostName;
 
 @property (nonatomic, assign) UInt16 myPort;
+
+@property (nonatomic, strong)ChatDBManager *chatManager;
+
 
 
 

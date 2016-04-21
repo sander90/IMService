@@ -27,7 +27,7 @@
     }
     return self;
 }
-
+#pragma mark - 初始化聊天界面，没有聊天内容
 - (id)initWithFriendName:(NSString * )frineName
 {
     self = [super init];
@@ -36,9 +36,21 @@
         _friendname = frineName;
         NSString * jidName = [NSString stringWithFormat:@"%@@%@",frineName,im.myHostName];
         _FriendJID = [XMPPJID jidWithString:jidName];
-        
         [im setIMChat:self];
         
+    }
+    return self;
+}
+
+- (id)initWithFriendName:(NSString *)frineName chatContentCount:(NSInteger)count finish:(void(^)(id data))finish
+{
+    self = [super init];
+    if (self) {
+        IMService * im = [IMService initService];
+        _friendname = frineName;
+        NSString * jidName = [NSString stringWithFormat:@"%@@%@",frineName,im.myHostName];
+        _FriendJID = [XMPPJID jidWithString:jidName];
+        [im setIMChat:self];
     }
     return self;
 }
