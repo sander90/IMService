@@ -9,10 +9,25 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>dbsoure.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>C55B44341C94D99F0036F712</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5EAEF711CCA6CA70017F9FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5EAEF811CCA90B10017F9FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

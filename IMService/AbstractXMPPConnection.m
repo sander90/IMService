@@ -36,7 +36,11 @@
         IMService * im = [IMService initService];
         [im setupWithMyname:userName andMyPassword:password andMyHostname:serviceName andPort:5222];
         [im setXmppConnection:self];
-        [im setupXmpp];        
+        [im setupXmpp];
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"chatcontentsdb" withExtension:@"momd"];
+        
+        [im initChatDBWithDBUrl:modelURL];
+
     }
     return self;
 }
