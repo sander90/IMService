@@ -24,6 +24,7 @@
 
 #import "SDPrintLog.h"
 
+
 #define SDAPIVERSION @"1.1"
 
 @interface SDXMPP ()<XMPPStreamDelegate,XMPPRosterDelegate>
@@ -38,6 +39,7 @@
 @property (nonatomic, readonly) XMPPRoster * xmppRoster;
 
 @property (nonatomic, strong)XMPPJID * myJID;
+
 
 @end
 
@@ -63,6 +65,7 @@
         _myPort = port;
         _myPassword = passWord;
         [self setupXmpp];
+        [self initChatDB];
     }
     return self;
    
@@ -83,8 +86,6 @@
 #pragma mark - 初始化 xmpp
 - (void)setupXmpp
 {
-    
-    
     _xmppStream = [[XMPPStream alloc] init];
     
     //接入断线重连模块
@@ -110,6 +111,12 @@
     }
     
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+}
+
+- (void)initChatDB
+{
+    self.chatManager = [ChatDBManager defineDBManager];
+    
 }
 
 #pragma mark - 登录
