@@ -113,9 +113,9 @@
     
 }
 
-- (void)initChatDBWithDBUrl:(NSURL * )dburl
+- (void)initChatDB
 {
-    self.chatManager = [ChatDBManager defineDBManagerWithDBBundle:dburl];
+    self.chatManager = [ChatDBManager defineDBManager];
 }
 
 #pragma mark - 登录

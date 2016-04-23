@@ -53,10 +53,7 @@
     [super setupXmpp];
 }
 
-- (void)initChatDBWithDBUrl:(NSURL *)dburl
-{
-    [super initChatDBWithDBUrl:dburl];
-}
+
 - (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid
 {
     [super sendMessage:message toFriendJID:friendJid];

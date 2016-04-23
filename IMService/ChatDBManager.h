@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import <sqlite3.h>
 
 @interface ChatDBManager : NSObject
+{
+    sqlite3 *dbPoint;
+}
 
 
-@property (nonatomic, strong,nonnull) NSManagedObjectContext * context;
 
-@property (nonatomic, strong,nonnull) NSManagedObjectModel * managedModel;
 
 + (nonnull ChatDBManager *)defineDBManager;
 

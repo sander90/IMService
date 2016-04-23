@@ -179,7 +179,7 @@
 		C595DE7F1CAFEBC2007283BF /* RoomChat.m in Sources */ = {isa = PBXBuildFile; fileRef = C595DE7D1CAFEBC2007283BF /* RoomChat.m */; };
 		C5EAEF361CC9149E0017F9FC /* ChatDBManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EAEF341CC9149E0017F9FC /* ChatDBManager.h */; };
 		C5EAEF371CC9149E0017F9FC /* ChatDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF351CC9149E0017F9FC /* ChatDBManager.m */; };
-		C5EAEF3D1CC91D3D0017F9FC /* ChatContent+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF391CC91D3D0017F9FC /* ChatContent+CoreDataProperties.m */; };
+		C5EAEF921CCA9B7D0017F9FC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5EAEF911CCA9B7D0017F9FC /* libsqlite3.tbd */; };
 		C5F1CD191C9D4ED10003AF89 /* SDXMPP.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5F1CD1A1C9D4ED10003AF89 /* SDXMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */; };
 		C5F1CD1D1C9D55CF0003AF89 /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD1B1C9D55CF0003AF89 /* IMService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -374,10 +374,10 @@
 		C595DE7D1CAFEBC2007283BF /* RoomChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomChat.m; sourceTree = "<group>"; };
 		C5EAEF341CC9149E0017F9FC /* ChatDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDBManager.h; sourceTree = "<group>"; };
 		C5EAEF351CC9149E0017F9FC /* ChatDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDBManager.m; sourceTree = "<group>"; };
-		C5EAEF391CC91D3D0017F9FC /* ChatContent+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ChatContent+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C5EAEF741CCA6CA70017F9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5EAEF841CCA90B10017F9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5EAEF891CCA91530017F9FC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		C5EAEF911CCA9B7D0017F9FC /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDXMPP.h; sourceTree = "<group>"; };
 		C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDXMPP.m; sourceTree = "<group>"; };
 		C5F1CD1B1C9D55CF0003AF89 /* IMService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMService.h; sourceTree = "<group>"; };
@@ -389,6 +389,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5EAEF921CCA9B7D0017F9FC /* libsqlite3.tbd in Frameworks */,
 				C503F2461C9974AE00421865 /* libresolv.9.dylib in Frameworks */,
 				C503F2441C99748B00421865 /* libxml2.2.dylib in Frameworks */,
 				C503F23E1C99692F00421865 /* UIKit.framework in Frameworks */,
@@ -784,6 +785,7 @@
 		C55B442C1C94D99F0036F712 = {
 			isa = PBXGroup;
 			children = (
+				C5EAEF911CCA9B7D0017F9FC /* libsqlite3.tbd */,
 				C5EAEF891CCA91530017F9FC /* CoreData.framework */,
 				C503F2451C9974AE00421865 /* libresolv.9.dylib */,
 				C503F2431C99748B00421865 /* libxml2.2.dylib */,
@@ -816,7 +818,6 @@
 			children = (
 				C5EAEF301CC900150017F9FC /* db */,
 				C593655F1C96D7BD00C16770 /* xmpp */,
-				C5EAEF391CC91D3D0017F9FC /* ChatContent+CoreDataProperties.m */,
 				C59366DE1C96F64700C16770 /* AbstractXMPPConnection.h */,
 				C59366DF1C96F64700C16770 /* AbstractXMPPConnection.m */,
 				C503F2481C9A4E8D00421865 /* SDPrintLog.h */,
@@ -1086,7 +1087,6 @@
 				C503F20C1C99582E00421865 /* DDXMLElement.m in Sources */,
 				C503F1DF1C99582E00421865 /* XMPPvCardTempLabel.m in Sources */,
 				C503F1E91C99582E00421865 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
-				C5EAEF3D1CC91D3D0017F9FC /* ChatContent+CoreDataProperties.m in Sources */,
 				C503F1931C99582E00421865 /* XMPPElement.m in Sources */,
 				C503F1C41C99582E00421865 /* XMPPJabberRPCModule.m in Sources */,
 				C503F1AD1C99582E00421865 /* XMPPResourceCoreDataStorageObject.m in Sources */,

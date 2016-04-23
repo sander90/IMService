@@ -93,6 +93,6 @@
 - (XMPPRoster *)getXMPPRoster;
 - (XMPPJID *)getMyXMPPJID;
 
-- (void)initChatDBWithDBUrl:(NSURL * )dburl;
+- (void)initChatDB;
 
 @end
