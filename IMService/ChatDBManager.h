@@ -7,19 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import <sqlite3.h>
+
+#define SQLITE_OK 0
 
 @interface ChatDBManager : NSObject
+{
+    sqlite3 *dbPoint;
+}
 
 
-@property (nonatomic, strong,nonnull) NSManagedObjectContext * context;
 
-@property (nonatomic, strong,nonnull) NSManagedObjectModel * managedModel;
 
 + (nonnull ChatDBManager *)defineDBManager;
 
 - (void)saveChatContent:(nonnull NSString* )content friengID:(nonnull NSString * )friendID chatID:(nonnull NSString * )chatID;
 
 - (nonnull NSArray * )fetchChatContentWithChatID:(nonnull NSString * )ChatID;
+
+- (void)openDBWithDBname:(NSString *)name;
 
 @end

@@ -65,7 +65,6 @@
         _myPort = port;
         _myPassword = passWord;
         [self setupXmpp];
-        [self initChatDB];
     }
     return self;
    
@@ -111,12 +110,12 @@
     }
     
     [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    
 }
 
 - (void)initChatDB
 {
     self.chatManager = [ChatDBManager defineDBManager];
-    
 }
 
 #pragma mark - 登录
@@ -362,7 +361,8 @@
         NSString * fromeName = fromjid.user;
         
         [SDPrintLog printLog:[NSString stringWithFormat:@"%@--->%@",fromeName,body] WithTag:@"didReceiveMessage"];
-        
+        [self.chatManager saveChatContent:body friengID:fromeName chatID:fromeName];
+
         [self IMServicedidReceiveMessage:body from:fromeName];
         
         // 不能载这里写。
@@ -433,12 +433,13 @@
 }
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
 {
-    [SDPrintLog printLog:@"" WithTag:@"didSendMessage"];
     NSString *body = [[message elementForName:@"body"] stringValue];
     XMPPJID * fromjid = [message from];
     NSString * fromeName = fromjid.user;
     [SDPrintLog printLog:[NSString stringWithFormat:@"%@--->%@",fromeName,body] WithTag:@"didSendMessage"];
     [self IMServicedidSendMessage:body to:fromeName];
+    
+    [self.chatManager saveChatContent:body friengID:fromeName chatID:fromeName];
 }
 - (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence
 {

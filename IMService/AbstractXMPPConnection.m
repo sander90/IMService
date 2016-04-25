@@ -36,7 +36,9 @@
         IMService * im = [IMService initService];
         [im setupWithMyname:userName andMyPassword:password andMyHostname:serviceName andPort:5222];
         [im setXmppConnection:self];
-        [im setupXmpp];        
+        [im setupXmpp];
+     
+
     }
     return self;
 }

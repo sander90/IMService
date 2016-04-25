@@ -93,4 +93,6 @@
 - (XMPPRoster *)getXMPPRoster;
 - (XMPPJID *)getMyXMPPJID;
 
+- (void)initChatDB;
+
 @end

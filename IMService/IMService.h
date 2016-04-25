@@ -36,6 +36,7 @@ typedef void(^FinishResult)(id data);
  * 创建IMService单例
  */
 + (id)initService;
+
 /**
  * 设置基础信息。本地信息，这个是在登录的时候进行设置。
  */

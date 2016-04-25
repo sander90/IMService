@@ -12,6 +12,7 @@
 #import "SDXMPP.h"
 #import "XMPPJID.h"
 #import "XMPPFramework.h"
+#import "IMService.h"
 
 
 @interface IMService ()
@@ -36,6 +37,7 @@
 {
     self = [super init];
     if (self) {
+        ChatDBManager * cdbm = [ChatDBManager defineDBManager];
         
     }
     return self;
@@ -52,6 +54,8 @@
 {
     [super setupXmpp];
 }
+
+
 - (void)sendMessage:(NSString * )message toFriendJID:(XMPPJID *)friendJid
 {
     [super sendMessage:message toFriendJID:friendJid];
@@ -239,7 +243,6 @@
         if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
             NSLog(@"%@ == %@",fromName,self.iMChat.friendname);
             if ([fromName isEqualToString:self.iMChat.friendname]) {
-                [self.chatManager saveChatContent:messageContent friengID:fromName chatID:fromName];
                 [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
                 return;
             }

@@ -23,10 +23,20 @@
 
 @property (nonatomic, strong,readonly) NSString* friendname;
 
-//发送信息
+/*
+ * 发送信息
+ */
 - (void)sendMessage:(NSString * )message;
-//初始化聊天室
+/**
+ * 初始化聊天室
+ */
 - (id)initWithFriendName:(NSString * )frineName;
-//离开聊天室
+/**
+ * 离开聊天室
+ */
 - (void)exitChat;
+/**
+ * 初始化聊天界面，初始化聊天记录的条数，得到的是聊天记录的数量
+ */
+- (id)initWithFriendName:(NSString *)frineName chatContentCount:(NSInteger)count finish:(void(^)(id data))finish;
 @end

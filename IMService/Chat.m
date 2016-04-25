@@ -41,7 +41,7 @@
     }
     return self;
 }
-
+#pragma mark - 初始化聊天界面，初始化聊天记录的条数，得到的是聊天记录的数量
 - (id)initWithFriendName:(NSString *)frineName chatContentCount:(NSInteger)count finish:(void(^)(id data))finish
 {
     self = [super init];
@@ -51,6 +51,8 @@
         NSString * jidName = [NSString stringWithFormat:@"%@@%@",frineName,im.myHostName];
         _FriendJID = [XMPPJID jidWithString:jidName];
         [im setIMChat:self];
+        NSArray * chatList = [im.chatManager fetchChatContentWithChatID:frineName];
+        finish(chatList);
     }
     return self;
 }
