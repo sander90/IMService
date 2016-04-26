@@ -12,6 +12,11 @@
 {
     sqlite3 *dbPoint;
 }
+
+#define DBLEVEL @"1"
+
+
+
 @end
 
 @implementation SDDatabase
@@ -37,8 +42,9 @@ static SDDatabase * db = nil;
 {
     self = [super init];
     if (self) {
-        NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString * dbPath = [docPath stringByAppendingString:path];
+        NSString * docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString * dbPath = [docPath stringByAppendingPathComponent:path];
+        NSLog(@"数据库－－－> %@",dbPath);
         int rsulte = sqlite3_open([dbPath UTF8String],&dbPoint);
         
         if (rsulte == SQLITE_OK) {
@@ -54,10 +60,7 @@ static SDDatabase * db = nil;
     int result = sqlite3_exec(dbPoint,[sql UTF8String],NULL,NULL,&errorMsg);
     return result;
 }
-- (void)createTableWithTableHeader
-{
-    
-}
+
 
 
 

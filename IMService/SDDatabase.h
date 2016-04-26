@@ -11,4 +11,7 @@
 
 @interface SDDatabase : NSObject
 
++ (SDDatabase *)databaseWithPath:(NSString *)path;
+
+- (int)execSQL:(NSString * )sql;
 @end

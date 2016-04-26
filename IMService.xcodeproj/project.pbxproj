@@ -180,7 +180,7 @@
 		C595DE7E1CAFEBC2007283BF /* RoomChat.h in Headers */ = {isa = PBXBuildFile; fileRef = C595DE7C1CAFEBC2007283BF /* RoomChat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C595DE7F1CAFEBC2007283BF /* RoomChat.m in Sources */ = {isa = PBXBuildFile; fileRef = C595DE7D1CAFEBC2007283BF /* RoomChat.m */; };
 		C5E158A91CCBA94700023160 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E158A81CCBA94700023160 /* libsqlite3.dylib */; };
-		C5EAEF361CC9149E0017F9FC /* ChatDBManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EAEF341CC9149E0017F9FC /* ChatDBManager.h */; };
+		C5EAEF361CC9149E0017F9FC /* ChatDBManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EAEF341CC9149E0017F9FC /* ChatDBManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5EAEF371CC9149E0017F9FC /* ChatDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF351CC9149E0017F9FC /* ChatDBManager.m */; };
 		C5F1CD191C9D4ED10003AF89 /* SDXMPP.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5F1CD1A1C9D4ED10003AF89 /* SDXMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */; };
