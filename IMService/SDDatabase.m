@@ -54,8 +54,13 @@ static SDDatabase * db = nil;
     int result = sqlite3_exec(dbPoint,[sql UTF8String],NULL,NULL,&errorMsg);
     return result;
 }
-- (void)createTableWithTableHeader
+
+- (void)createTableWithTableHeader:(NSDictionary *)header
 {
+    NSMutableString * createheader = [[NSMutableString alloc] init];
+    
+    [createheader appendString:@"CREATE TABLE IF NOT EXISTS STUDENT(###)"];
+    
     
 }
 
