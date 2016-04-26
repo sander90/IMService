@@ -13,9 +13,6 @@
 #define DBLEVEL 1
 #define DBSAVEDLEVELUSER @"sqlitesavelaveuserinfo"
 
-
-
-
 @interface ChatDBManager ()
 
 @property(nonatomic,strong,readonly)SDDatabase * db;
@@ -40,6 +37,7 @@
     self = [super init];
     if (self) {
         _db = [SDDatabase databaseWithPath:@"dabase.db"];
+        [self initializeDB];
     }
     return self;
 }
@@ -66,7 +64,7 @@
 }
 - (void)createDB
 {
-    NSString *sql = @"create table if not exists testTable(ID INTEGER PRIMARY KEY AUTOINCREMENT, chatID text,fromName text,chatcontent text)";
+    NSString *sql = @"create table if not exists ChatContent(ID INTEGER PRIMARY KEY AUTOINCREMENT, chatID text,fromName text,chatcontent text)";
     [self.db execSQL:sql];
 }
 - (void)updateDB
@@ -76,12 +74,28 @@
 
 - (void)saveChatContent:(NSString* )content friengID:(NSString * )friendID chatID:(NSString * )chatID
 {
-
+    NSString * sql = [NSString stringWithFormat:@"INSERT INTO ChatContent (chatID,fromName,chatcontent) VALUES (%@,%@,%@);",chatID,friendID,content];
+    [self.db execSQL:sql];
 }
 
 - (NSArray * )fetchChatContentWithChatID:(NSString * )ChatID
 {
     return @[];
 }
+
+@end
+
+
+@implementation SDChatModel
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 
 @end
