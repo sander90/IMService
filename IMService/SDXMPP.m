@@ -361,8 +361,11 @@
         NSString * fromeName = fromjid.user;
         
         [SDPrintLog printLog:[NSString stringWithFormat:@"%@--->%@",fromeName,body] WithTag:@"didReceiveMessage"];
+        if (!self.chatManager) {
+            self.chatManager = [ChatDBManager defineDBManager];
+        }
         [self.chatManager saveChatContent:body friengID:fromeName chatID:fromeName];
-
+        
         [self IMServicedidReceiveMessage:body from:fromeName];
         
         // 不能载这里写。

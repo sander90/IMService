@@ -180,8 +180,11 @@
 		C595DE7E1CAFEBC2007283BF /* RoomChat.h in Headers */ = {isa = PBXBuildFile; fileRef = C595DE7C1CAFEBC2007283BF /* RoomChat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C595DE7F1CAFEBC2007283BF /* RoomChat.m in Sources */ = {isa = PBXBuildFile; fileRef = C595DE7D1CAFEBC2007283BF /* RoomChat.m */; };
 		C5E158A91CCBA94700023160 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E158A81CCBA94700023160 /* libsqlite3.dylib */; };
-		C5EAEF361CC9149E0017F9FC /* ChatDBManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EAEF341CC9149E0017F9FC /* ChatDBManager.h */; };
+		C5EAEF361CC9149E0017F9FC /* ChatDBManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EAEF341CC9149E0017F9FC /* ChatDBManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5EAEF371CC9149E0017F9FC /* ChatDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF351CC9149E0017F9FC /* ChatDBManager.m */; };
+		C5EAEF9E1CD1070C0017F9FC /* ChatContentModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EAEF9C1CD1070C0017F9FC /* ChatContentModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5EAEF9F1CD1070C0017F9FC /* ChatContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EAEF9D1CD1070C0017F9FC /* ChatContentModel.m */; };
+		C5EAEFA11CD10D6C0017F9FC /* SDDBDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = C5EAEFA01CD10D6C0017F9FC /* SDDBDefine.h */; };
 		C5F1CD191C9D4ED10003AF89 /* SDXMPP.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C5F1CD1A1C9D4ED10003AF89 /* SDXMPP.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */; };
 		C5F1CD1D1C9D55CF0003AF89 /* IMService.h in Headers */ = {isa = PBXBuildFile; fileRef = C5F1CD1B1C9D55CF0003AF89 /* IMService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -379,9 +382,10 @@
 		C5E158A81CCBA94700023160 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		C5EAEF341CC9149E0017F9FC /* ChatDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDBManager.h; sourceTree = "<group>"; };
 		C5EAEF351CC9149E0017F9FC /* ChatDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatDBManager.m; sourceTree = "<group>"; };
-		C5EAEF741CCA6CA70017F9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5EAEF841CCA90B10017F9FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5EAEF891CCA91530017F9FC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		C5EAEF9C1CD1070C0017F9FC /* ChatContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatContentModel.h; sourceTree = "<group>"; };
+		C5EAEF9D1CD1070C0017F9FC /* ChatContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatContentModel.m; sourceTree = "<group>"; };
+		C5EAEFA01CD10D6C0017F9FC /* SDDBDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDBDefine.h; sourceTree = "<group>"; };
 		C5F1CD171C9D4ED10003AF89 /* SDXMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDXMPP.h; sourceTree = "<group>"; };
 		C5F1CD181C9D4ED10003AF89 /* SDXMPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDXMPP.m; sourceTree = "<group>"; };
 		C5F1CD1B1C9D55CF0003AF89 /* IMService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMService.h; sourceTree = "<group>"; };
@@ -803,8 +807,6 @@
 				C503F22D1C9966FA00421865 /* SystemConfiguration.framework */,
 				C5302AE31C96B25A0060C66B /* Foundation.framework */,
 				C55B44371C94D99F0036F712 /* IMService */,
-				C5EAEF731CCA6CA70017F9FC /* dbsoure */,
-				C5EAEF831CCA90B10017F9FC /* dbsoure */,
 				C55B44361C94D99F0036F712 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -869,24 +871,11 @@
 		C5EAEF401CC91D460017F9FC /* dbmodel */ = {
 			isa = PBXGroup;
 			children = (
+				C5EAEF9C1CD1070C0017F9FC /* ChatContentModel.h */,
+				C5EAEF9D1CD1070C0017F9FC /* ChatContentModel.m */,
+				C5EAEFA01CD10D6C0017F9FC /* SDDBDefine.h */,
 			);
 			name = dbmodel;
-			sourceTree = "<group>";
-		};
-		C5EAEF731CCA6CA70017F9FC /* dbsoure */ = {
-			isa = PBXGroup;
-			children = (
-				C5EAEF741CCA6CA70017F9FC /* Info.plist */,
-			);
-			path = dbsoure;
-			sourceTree = "<group>";
-		};
-		C5EAEF831CCA90B10017F9FC /* dbsoure */ = {
-			isa = PBXGroup;
-			children = (
-				C5EAEF841CCA90B10017F9FC /* Info.plist */,
-			);
-			path = dbsoure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -957,6 +946,7 @@
 				C503F1CE1C99582E00421865 /* XMPPvCardCoreDataStorage.h in Headers */,
 				C503F2241C99582E00421865 /* XMPPIDTracker.h in Headers */,
 				C503F2061C99582E00421865 /* NSString+DDXML.h in Headers */,
+				C5EAEF9E1CD1070C0017F9FC /* ChatContentModel.h in Headers */,
 				C503F18D1C99582E00421865 /* NSNumber+XMPP.h in Headers */,
 				C503F1EA1C99582E00421865 /* XMPPDateTimeProfiles.h in Headers */,
 				C503F1B31C99582E00421865 /* XMPPResourceMemoryStorage.h in Headers */,
@@ -965,6 +955,7 @@
 				C503F2181C99582E00421865 /* GCDAsyncSocket.h in Headers */,
 				C503F2051C99582E00421865 /* stringprep.h in Headers */,
 				C503F2031C99582E00421865 /* idn-int.h in Headers */,
+				C5EAEFA11CD10D6C0017F9FC /* SDDBDefine.h in Headers */,
 				C503F1F71C99582E00421865 /* XMPPvCardAvatarModule.h in Headers */,
 				C503F1B71C99582E00421865 /* XMPPRosterMemoryStoragePrivate.h in Headers */,
 				C503F1B81C99582E00421865 /* XMPPUserMemoryStorage.h in Headers */,
@@ -1096,6 +1087,7 @@
 				C503F1DF1C99582E00421865 /* XMPPvCardTempLabel.m in Sources */,
 				C503F1E91C99582E00421865 /* NSDate+XMPPDateTimeProfiles.m in Sources */,
 				C503F1931C99582E00421865 /* XMPPElement.m in Sources */,
+				C5EAEF9F1CD1070C0017F9FC /* ChatContentModel.m in Sources */,
 				C503F1C41C99582E00421865 /* XMPPJabberRPCModule.m in Sources */,
 				C503F1AD1C99582E00421865 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				C503F1AB1C99582E00421865 /* XMPPGroupCoreDataStorageObject.m in Sources */,

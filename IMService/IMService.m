@@ -243,6 +243,7 @@
         if (self.iMChat.delegate && [self.iMChat.delegate respondsToSelector:@selector(XMPPdidReceiveMessage:withFriendName:)]) {
             NSLog(@"%@ == %@",fromName,self.iMChat.friendname);
             if ([fromName isEqualToString:self.iMChat.friendname]) {
+                [self.chatManager saveChatContent:messageContent friengID:fromName chatID:fromName];
                 [self.iMChat.delegate XMPPdidReceiveMessage:messageContent withFriendName:fromName];
                 return;
             }
