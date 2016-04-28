@@ -152,6 +152,13 @@
     [messageElement addAttributeWithName:@"to" stringValue:[friendJid full]];
     [messageElement addChild:body];
     [self.xmppStream sendElement:messageElement];
+    
+    
+    if (!self.chatManager) {
+        self.chatManager = [ChatDBManager defineDBManager];
+    }
+    
+    [self.chatManager saveChatContent:message friengID:[self.myJID user] chatID:[friendJid user]];
 }
 #pragma mark - 普通的发送协议信息
 - (void)sendXMPPStreamElement:(NSXMLElement *)element
@@ -437,11 +444,13 @@
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
 {
     NSString *body = [[message elementForName:@"body"] stringValue];
-    XMPPJID * fromjid = [message from];
+    XMPPJID * fromjid = self.myJID;
     NSString * fromeName = fromjid.user;
     [SDPrintLog printLog:[NSString stringWithFormat:@"%@--->%@",fromeName,body] WithTag:@"didSendMessage"];
     [self IMServicedidSendMessage:body to:fromeName];
-    
+    if (!self.chatManager) {
+        self.chatManager = [ChatDBManager defineDBManager];
+    }
     [self.chatManager saveChatContent:body friengID:fromeName chatID:fromeName];
 }
 - (void)xmppStream:(XMPPStream *)sender didSendPresence:(XMPPPresence *)presence
