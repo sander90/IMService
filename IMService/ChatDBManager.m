@@ -8,9 +8,10 @@
 
 #import "ChatDBManager.h"
 #import "SDDatabase.h"
+#import "ChatContentModel.h"
 
 // 数据库的版本号
-#define DBLEVEL 1
+#define DBLEVEL 2
 #define DBSAVEDLEVELUSER @"sqlitesavelaveuserinfo"
 
 @interface ChatDBManager ()
@@ -64,7 +65,7 @@
 }
 - (void)createDB
 {
-    NSString *sql = @"create table if not exists ChatContent(ID INTEGER PRIMARY KEY AUTOINCREMENT, chatID text,fromName text,chatcontent text)";
+    NSString *sql = @"create table if not exists ChatContent (ID INTEGER PRIMARY KEY AUTOINCREMENT, chatID text,fromName text,chatcontent text,createdata text)";
     [self.db execSQL:sql];
 }
 - (void)updateDB
@@ -74,28 +75,29 @@
 
 - (void)saveChatContent:(NSString* )content friengID:(NSString * )friendID chatID:(NSString * )chatID
 {
-    NSString * sql = [NSString stringWithFormat:@"INSERT INTO ChatContent (chatID,fromName,chatcontent) VALUES (%@,%@,%@);",chatID,friendID,content];
+    NSDate * date = [NSDate date];
+    long timelong = [date timeIntervalSince1970];
+    NSString * timestr = [NSString stringWithFormat:@"%ld",(long)timelong];
+    NSString * sql = [NSString stringWithFormat:@"INSERT INTO ChatContent (chatID,fromName,chatcontent,createdata) VALUES('%@','%@','%@','%@')",chatID,friendID,content,timestr];
     [self.db execSQL:sql];
 }
 
 - (NSArray * )fetchChatContentWithChatID:(NSString * )ChatID
 {
-    return @[];
+    NSString * sql = [NSString stringWithFormat:@"SELECT * FROM ChatContent Where chatID like '%@'",ChatID];
+    
+    NSArray * list = [self.db fetchSQL:sql];
+    
+    __block NSMutableArray * theChatList = [NSMutableArray array];
+    [list enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary * one = obj;
+        ChatContentModel* dbmodel = [[ChatContentModel alloc] initWithContent:one];
+        [theChatList addObject:dbmodel];
+    }];
+    return theChatList;
 }
 
 @end
 
 
-@implementation SDChatModel
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
-
-
-@end

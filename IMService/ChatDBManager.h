@@ -20,12 +20,5 @@
 @end
 
 
-@interface SDChatModel : NSObject
 
-@property(nonatomic, strong)NSString * chatID;
 
-@property(nonatomic, strong)NSString * chatFromeID;
-
-@property(nonatomic, strong)NSString * chatContent;
-
-@end
